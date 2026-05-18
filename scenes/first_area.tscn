@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://dkmerpadix720"]
+
+[ext_resource type="Script" uid="uid://duhvgt0r8ph1p" path="res://scripts/first_area.gd" id="1_fh0ai"]
+[ext_resource type="Texture2D" uid="uid://chup5n62y3gf8" path="res://images/arvore.png" id="1_urf0j"]
+[ext_resource type="PackedScene" uid="uid://codiq4jo2ftrt" path="res://scenes/floor.tscn" id="2_o6oav"]
+[ext_resource type="Texture2D" uid="uid://eqocj22nbbw2" path="res://images/caverna.png" id="3_j6tfh"]
+[ext_resource type="Texture2D" uid="uid://cbgkyxw8ovclf" path="res://images/cave_central.png" id="4_fh0ai"]
+[ext_resource type="PackedScene" uid="uid://d3g8re3eljrv8" path="res://scenes/entrada.tscn" id="4_o6oav"]
+[ext_resource type="Texture2D" uid="uid://bp1j5c7b35vhg" path="res://images/enterArrow.png" id="6_4q1ry"]
+[ext_resource type="PackedScene" uid="uid://cc26gg5huh236" path="res://scenes/player.tscn" id="6_j6tfh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fh0ai"]
+size = Vector2(20, 20.375)
+
+[node name="first_area" type="Node2D" unique_id=596757926]
+script = ExtResource("1_fh0ai")
+
+[node name="Arvore" type="Sprite2D" parent="." unique_id=1235052074]
+position = Vector2(-4, -426)
+texture = ExtResource("1_urf0j")
+
+[node name="Caverna" type="Sprite2D" parent="." unique_id=354149138]
+z_index = -1
+position = Vector2(95, 114)
+texture = ExtResource("3_j6tfh")
+
+[node name="floor" parent="Caverna" unique_id=2068233716 instance=ExtResource("2_o6oav")]
+position = Vector2(-72, 201)
+scale = Vector2(50, 2)
+
+[node name="entrada" parent="Caverna" unique_id=251451387 instance=ExtResource("4_o6oav")]
+position = Vector2(451, 94)
+scale = Vector2(12, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Caverna/entrada" unique_id=410557159]
+position = Vector2(-0.083333336, -0.25)
+shape = SubResource("RectangleShape2D_fh0ai")
+
+[node name="EnterArrow" type="Sprite2D" parent="Caverna/entrada" unique_id=377097390]
+visible = false
+position = Vector2(-0.33333254, -15.75)
+scale = Vector2(0.03235816, 0.048537236)
+texture = ExtResource("6_4q1ry")
+
+[node name="CaveCentral" type="Sprite2D" parent="." unique_id=156120402]
+position = Vector2(2028.0001, 81.99994)
+scale = Vector2(1.35559, 1.35559)
+texture = ExtResource("4_fh0ai")
+
+[node name="floor2" parent="CaveCentral" unique_id=505940209 instance=ExtResource("2_o6oav")]
+position = Vector2(16.22902, 168.93019)
+scale = Vector2(36.88431, 0.7376862)
+
+[node name="floor3" parent="CaveCentral" unique_id=1745992312 instance=ExtResource("2_o6oav")]
+position = Vector2(688.9988, -0.7376251)
+scale = Vector2(36.88431, 0.7376862)
+
+[node name="player" parent="." unique_id=856049245 instance=ExtResource("6_j6tfh")]
+position = Vector2(0, -3)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1813336631]
+
+[node name="Camera2D" type="Camera2D" parent="CanvasLayer" unique_id=1584192135]
+position_smoothing_enabled = true
+
+[connection signal="enter" from="Caverna/entrada" to="." method="_on_entrada_enter"]

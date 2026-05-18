@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cc26gg5huh236"]
+
+[ext_resource type="Texture2D" uid="uid://byvfogef0yuco" path="res://images/personagem.png" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://c0ake26mww70e" path="res://scripts/player.gd" id="1_g2els"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
+size = Vector2(85, 134)
+
+[node name="player" type="CharacterBody2D" unique_id=856049245]
+script = ExtResource("1_g2els")
+
+[node name="Personagem" type="Sprite2D" parent="." unique_id=21985062]
+position = Vector2(-1, -10)
+texture = ExtResource("1_3vyb7")
+
+[node name="coyoteTimer" type="Timer" parent="." unique_id=2067475937]
+wait_time = 0.55
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1854669812]
+position = Vector2(-0.5, -7)
+shape = SubResource("RectangleShape2D_g2els")
+
+[connection signal="timeout" from="coyoteTimer" to="." method="_on_coyote_timer_timeout"]

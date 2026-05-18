@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://d3g8re3eljrv8"]
+
+[ext_resource type="Script" uid="uid://bicta88rw608e" path="res://scripts/entrada.gd" id="1_jov4l"]
+
+[node name="entrada" type="Area2D" unique_id=1027853176]
+script = ExtResource("1_jov4l")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

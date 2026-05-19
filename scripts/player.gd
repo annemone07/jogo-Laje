@@ -7,6 +7,7 @@ var posVoltar=global_position
 var canEnter = false
 var posTp = Vector2(100,100)
 var canJump = true
+var contadorCoyote=0
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 @onready var coyote_timer: Timer = $coyoteTimer
@@ -18,14 +19,19 @@ func _physics_process(delta: float) -> void:
 	
 	#gravidade
 	if not is_on_floor():
+		if contadorCoyote==0:
+			print("teste")
+			coyote_timer.start()
+			contadorCoyote+=1
 		velocity += get_gravity() * delta
-		coyote_timer.start()
 	else:
+		contadorCoyote=0
 		canJump=true
 	
 	#caso não esteja atravessando uma porta/caminho, pode se mover
 	if not loading.is_playing():
 		if Input.is_action_just_pressed("jump") and canJump:
+			canJump = false
 			velocity.y = JUMP_VELOCITY
 		# Get the input direction and handle the movement/deceleration.
 		# As good practice, you should replace UI actions with custom gameplay actions.
@@ -41,6 +47,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_coyote_timer_timeout() -> void: #permite pular por um tempo dps de sair da plataforma (0.5s)
 	canJump = false
+	print("teste2")
 
 func entrar(): #inicia animação de entrar nas portas
 	if canEnter:

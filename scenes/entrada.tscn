@@ -5,5 +5,8 @@
 [node name="entrada" type="Area2D" unique_id=1027853176]
 script = ExtResource("1_jov4l")
 
+[node name="delay_voltar" type="Timer" parent="." unique_id=968310974]
+one_shot = true
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

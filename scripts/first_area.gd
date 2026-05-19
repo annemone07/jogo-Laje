@@ -1,18 +1,14 @@
 extends Node2D
 @onready var camera_2d: Camera2D = $CanvasLayer/Camera2D
 @onready var player: CharacterBody2D = $player
-var canEnter = false
+@onready var loading: AnimationPlayer = $CanvasLayer/loading
+@onready var black_screen: Sprite2D = $CanvasLayer/BlackScreen
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
+	loading.play("loading2")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	camera_2d.position = player.position
-
-func _on_entrada_enter(can: Variant) -> void:
-	canEnter = can
-	if can:
-		pass
+	camera_2d.position.x = player.position.x
+	camera_2d.position.y = player.position.y-100

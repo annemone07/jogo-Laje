@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://ccgtucabper6c"]
+
+[ext_resource type="Script" uid="uid://bsopq8w56tm4e" path="res://scripts/enemy_test.gd" id="1_gep6m"]
+[ext_resource type="Texture2D" uid="uid://bhknd4ijmfr58" path="res://images/maca.png" id="2_ainam"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mo2s0"]
+size = Vector2(36, 74)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1yn4p"]
+size = Vector2(32, 71)
+
+[node name="enemyTest" type="CharacterBody2D" unique_id=1691512735]
+script = ExtResource("1_gep6m")
+
+[node name="Maca" type="Sprite2D" parent="." unique_id=1800262470]
+position = Vector2(0, -1)
+texture = ExtResource("2_ainam")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2005051838]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_mo2s0")
+
+[node name="hitbox" type="Area2D" parent="." unique_id=1056770645]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" unique_id=920239726]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_1yn4p")

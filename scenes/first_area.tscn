@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cc26gg5huh236" path="res://scenes/player.tscn" id="6_j6tfh"]
 [ext_resource type="Texture2D" uid="uid://c8n5wy3wusat" path="res://scenes/black_screen.png" id="10_k1hnx"]
 [ext_resource type="PackedScene" uid="uid://bmm0ovx87n0if" path="res://scenes/entrada_auto.tscn" id="11_k8fe5"]
+[ext_resource type="PackedScene" uid="uid://ccgtucabper6c" path="res://scenes/enemy_test.tscn" id="12_uvkhp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fh0ai"]
 size = Vector2(20, 8.0625)
@@ -188,5 +189,14 @@ shape = SubResource("RectangleShape2D_uvkhp")
 
 [node name="posSaida" type="Node2D" parent="entranceAuto" unique_id=585878987]
 position = Vector2(-1005.00006, 18)
+
+[node name="enemyTest" parent="." unique_id=1691512735 instance=ExtResource("12_uvkhp")]
+position = Vector2(1529, 232)
+
+[node name="enemyTest2" parent="." unique_id=1719195852 instance=ExtResource("12_uvkhp")]
+position = Vector2(753, 238)
+
+[node name="enemyTest3" parent="." unique_id=393547801 instance=ExtResource("12_uvkhp")]
+position = Vector2(-565, 252)
 
 [connection signal="animation_finished" from="CanvasLayer/loading" to="player" method="_on_loading_animation_finished"]

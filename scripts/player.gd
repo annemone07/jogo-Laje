@@ -4,6 +4,7 @@ extends CharacterBody2D
 signal trocarSala
 
 var posVoltar=global_position
+var attacked=false
 var canEnter = false
 var posTp = Vector2(100,100)
 var canJump = true
@@ -12,10 +13,15 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 @onready var coyote_timer: Timer = $coyoteTimer
 @onready var loading: AnimationPlayer = %loading
+@onready var area_atk: Area2D = $areaAtk
+@onready var timer_attack: Timer = $timerAttack
 
 func _physics_process(delta: float) -> void:
 	#print(canEnter)
 	entrar()
+	
+	#controla ataque básico
+	attack()
 	
 	#gravidade
 	if not is_on_floor():
@@ -59,3 +65,11 @@ func _on_loading_animation_finished(anim_name: StringName) -> void: #teleporta j
 		posVoltar = global_position
 		global_position=Vector2(posTp)
 		loading.play("loading2")
+
+func attack():
+	if Input.is_action_just_pressed("attackButton") and timer_attack.is_stopped():
+		timer_attack.start()
+		attacked=true
+
+func _on_timer_attack_timeout() -> void:
+	attacked=false

@@ -4,6 +4,7 @@ extends CharacterBody2D
 
 @onready var player: Jogador = %player
 @onready var hitbox: Area2D = $hitbox
+@onready var maca: Sprite2D = $Maca
 
 var hp = 10
 const SPEED = 100.0
@@ -23,8 +24,10 @@ func _physics_process(delta: float) -> void:
 	if abs(player.global_position.x - global_position.x)<500:
 		if player.global_position.x - global_position.x<0:
 			direction = -1
+			maca.flip_h = true
 		elif player.global_position.x - global_position.x>0:
 			direction = 1
+			maca.flip_h = false
 	else:
 		direction = 0
 
@@ -39,7 +42,19 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	
 	if direction:
-		velocity.x = direction * SPEED
+		if player.hasAttacked and hitbox.overlaps_area(player.get_node("areaAtk")) and contador_i_frames==0:
+			hp-=1
+			#knockback
+			if maca.flip_h == false:
+				velocity.x = -SPEED*20
+				contador_i_frames=1
+				print(hp)
+			if maca.flip_h == true:
+				velocity.x = SPEED*20
+				contador_i_frames=1
+				print(hp)
+		else:
+			velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 

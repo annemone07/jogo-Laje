@@ -1,4 +1,3 @@
-class_name Enemy
 extends CharacterBody2D
 
 var hp = 10
@@ -6,10 +5,12 @@ var speed = 150
 var current_state = state.IDLE
 enum state {IDLE,HUNT,DEAD}
 @onready var player: Jogador = %player
+@onready var enemy_hitbox: Area2D = $Enemy_hitbox
+@onready var enemy_sprite: Sprite2D = $Enemy_collision/Enemy_sprite
 var contador_i_frames=1
 
 func _physics_process(_delta) -> void:
-	if hp <0:
+	if hp <= 0:
 		current_state = state.DEAD
 #isso fica procurando "como" o inimigo tá
 	match current_state:
@@ -20,14 +21,14 @@ func _physics_process(_delta) -> void:
 		state.DEAD:
 			queue_free()
 
-	if player.hasAttacked and $Enemy_hitbox.overlaps_area(player.get_node("areaAtk")) and contador_i_frames==0:
+	if player.hasAttacked and enemy_hitbox.overlaps_area(player.get_node("areaAtk")) and contador_i_frames==0:
 		hp-=1
 		#knockback
-		if $Enemy_collision/Enemy_sprite.flip_h == false:
+		if enemy_sprite.flip_h == false:
 			velocity.x = -speed*20
 			contador_i_frames=1
 			print(hp)
-		if $Enemy_collision/Enemy_sprite.flip_h == true:
+		if enemy_sprite.flip_h == true:
 			velocity.x = speed*20
 			contador_i_frames=1
 			print(hp)
@@ -54,10 +55,10 @@ func _on_enemy_range_body_entered(body: Node2D)-> void:
 func hunting():
 	if player.global_position.x > global_position.x:
 		velocity.x = speed
-		$Enemy_collision/Enemy_sprite.flip_h = false
+		enemy_sprite.flip_h = false
 	else:
 		velocity.x = -speed
-		$Enemy_collision/Enemy_sprite.flip_h = true
+		enemy_sprite.flip_h = true
 		
 #parando
 func _on_enemy_range_body_exited(body: Node2D) -> void:

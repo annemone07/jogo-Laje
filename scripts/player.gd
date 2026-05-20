@@ -2,8 +2,12 @@ class_name Jogador
 
 extends CharacterBody2D
 signal trocarSala
-
+signal morreu
+var hp=10
+var knockbackDirection=0
 var posVoltar=global_position
+var invulnerable=false
+var takeDmg=false
 var hasAttacked=false
 var canEnter = false
 var posTp = Vector2(100,100)
@@ -19,6 +23,7 @@ const JUMP_VELOCITY = -400.0
 @onready var atk_direita: CollisionShape2D = $areaAtk/atkDireita
 @onready var atk_esquerda: CollisionShape2D = $areaAtk/atkEsquerda
 @onready var timer_ranged: Timer = $timerRanged
+@onready var timer_i_frames: Timer = $timer_I_frames
 
 func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("mLeft", "mRight")
@@ -26,7 +31,15 @@ func _physics_process(delta: float) -> void:
 	#print(canEnter)
 	entrar()
 	
-	#controla ataque básico
+	if hp<=0:
+		GlobalScript.salaAtual = get_parent().scene_file_path
+		morreu.emit()
+	
+	if takeDmg and not invulnerable:
+			hp-=1
+			print(hp)
+			takeDmg=false
+			invulnerable=true
 	
 	#gravidade
 	if not is_on_floor():
@@ -47,25 +60,32 @@ func _physics_process(delta: float) -> void:
 		# Get the input direction and handle the movement/deceleration.
 		# As good practice, you should replace UI actions with custom gameplay actions.
 		
-		if direction>0:
-			atk_direita.disabled=false
-			atk_esquerda.disabled=true
-		elif direction<0:
-			atk_direita.disabled=true
-			atk_esquerda.disabled=false
+		if timer_attack.is_stopped():
+			if direction>0:
+				atk_direita.disabled=false
+				atk_esquerda.disabled=true
+			elif direction<0:
+				atk_direita.disabled=true
+				atk_esquerda.disabled=false
 		
 		ranged()
 		
 		attack()
 		
-		if direction:
-			GlobalScript.playerDirection = direction
-			velocity.x = direction * SPEED
-		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
+		animacao_ataque()
+		
+		if not invulnerable: #caso normal
+			if direction: #se andando
+				GlobalScript.playerDirection = direction
+				velocity.x = direction * SPEED
+			else: #se sem andar
+				velocity.x = move_toward(velocity.x, 0, SPEED)
+		else: #se em estado de knockback, como foi lançado lá em _on_hurtbox_body_entered, se movimenta até chegar em 0
+			velocity = velocity.move_toward(Vector2.ZERO, delta)
 	else:
-		#caso esteja atravessando, para de andar
-		velocity.x=0
+		#caso esteja atravessando uma porta, para de andar
+		velocity.x = 0
+	
 	move_and_slide()
 
 func _on_coyote_timer_timeout() -> void: #permite pular por um tempo dps de sair da plataforma (0.5s)
@@ -98,3 +118,23 @@ func ranged():
 
 func _on_timer_attack_timeout() -> void:
 	hasAttacked=false
+
+#player taking dmg if enemy enters their hurtbox
+func _on_hurtbox_body_entered(body: CharacterBody2D) -> void:
+	if body.is_in_group("enemies"): #verifica se corpo é inimigo
+		if not invulnerable:
+			takeDmg=true
+			timer_i_frames.start()
+		knockbackDirection = body.position.direction_to(global_position)
+		velocity = knockbackDirection.normalized() * 300 #lança o player na velocidade do knockback
+		velocity.y -= 150
+
+func _on_timer_i_frames_timeout() -> void:
+	invulnerable=false
+	
+func animacao_ataque():
+	#eventual animação ao atacar, por enquanto mostra qual lado do ataque tá ativo
+	if hasAttacked:
+		area_atk.visible=true
+	else:
+		area_atk.visible=false

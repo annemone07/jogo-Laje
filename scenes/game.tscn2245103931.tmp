@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c3l5svqdj55d6"]
+
+[ext_resource type="PackedScene" uid="uid://cb0t1mfia82rs" path="res://scenes/cutscene_inicial.tscn" id="1_uwrxv"]
+[ext_resource type="Script" uid="uid://r7tltspmmjlt" path="res://scripts/game.gd" id="1_yqjtg"]
+
+[node name="Game" type="Node2D" unique_id=437017145]
+script = ExtResource("1_yqjtg")
+
+[node name="cutscene_inicial" parent="." unique_id=133688127 instance=ExtResource("1_uwrxv")]
+
+[connection signal="finish" from="cutscene_inicial" to="." method="_on_cutscene_inicial_finish"]

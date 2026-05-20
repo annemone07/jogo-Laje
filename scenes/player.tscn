@@ -9,6 +9,9 @@ size = Vector2(85, 134)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
 size = Vector2(53, 110)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dqkch"]
+size = Vector2(92, 140)
+
 [node name="player" type="CharacterBody2D" unique_id=856049245]
 script = ExtResource("1_g2els")
 
@@ -37,11 +40,23 @@ position = Vector2(-130, 0)
 shape = SubResource("RectangleShape2D_qhqgy")
 
 [node name="timerAttack" type="Timer" parent="." unique_id=1350838517]
-wait_time = 0.41
+wait_time = 0.2
 one_shot = true
 
 [node name="timerRanged" type="Timer" parent="." unique_id=487313558]
 one_shot = true
 
+[node name="timer_I_frames" type="Timer" parent="." unique_id=851441878]
+wait_time = 0.392
+one_shot = true
+
+[node name="hurtbox" type="Area2D" parent="." unique_id=1875076916]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox" unique_id=2122871068]
+position = Vector2(-1, -10)
+shape = SubResource("RectangleShape2D_dqkch")
+
 [connection signal="timeout" from="coyoteTimer" to="." method="_on_coyote_timer_timeout"]
 [connection signal="timeout" from="timerAttack" to="." method="_on_timer_attack_timeout"]
+[connection signal="timeout" from="timer_I_frames" to="." method="_on_timer_i_frames_timeout"]
+[connection signal="body_entered" from="hurtbox" to="." method="_on_hurtbox_body_entered"]

@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bqaswrmwmwk6h"]
+
+[ext_resource type="Script" uid="uid://dt6b7iqano6wd" path="res://scripts/death_screen.gd" id="1_dwo6e"]
+[ext_resource type="Texture2D" uid="uid://c2x88mmxsnk30" path="res://images/deathScreenPlaceholder.png" id="1_uyutr"]
+
+[node name="death_screen" type="Node2D" unique_id=1472382715]
+script = ExtResource("1_dwo6e")
+
+[node name="DeathScreenPlaceholder" type="Sprite2D" parent="." unique_id=816317552]
+position = Vector2(1.0000007, -0.9999995)
+scale = Vector2(0.69500005, 0.695)
+texture = ExtResource("1_uyutr")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=208428803]
+
+[node name="Button" type="Button" parent="." unique_id=1039397759]
+offset_left = -261.0
+offset_top = 115.0
+offset_right = 195.0
+offset_bottom = 252.0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

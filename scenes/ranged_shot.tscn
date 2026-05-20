@@ -18,3 +18,5 @@ shape = SubResource("RectangleShape2D_ocokt")
 
 [node name="timerDesaparecer" type="Timer" parent="." unique_id=1441783387]
 one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

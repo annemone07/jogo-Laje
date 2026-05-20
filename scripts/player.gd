@@ -22,6 +22,7 @@ const JUMP_VELOCITY = -400.0
 
 func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("mLeft", "mRight")
+	GlobalScript.playerPos = global_position
 	#print(canEnter)
 	entrar()
 	
@@ -58,6 +59,7 @@ func _physics_process(delta: float) -> void:
 		attack()
 		
 		if direction:
+			GlobalScript.playerDirection = direction
 			velocity.x = direction * SPEED
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
@@ -90,7 +92,7 @@ func ranged():
 	if Input.is_action_just_pressed("rangedAttack") and timer_ranged.is_stopped():
 		var bala = preload("res://scenes/ranged_shot.tscn").instantiate()
 		#var balaCarregada = bala.instantiate()
-		player.add_child(bala)
+		player.add_sibling(bala)
 		#timer_ranged.start()
 		hasAttacked=true
 

@@ -3,17 +3,128 @@
 [ext_resource type="Script" uid="uid://duhvgt0r8ph1p" path="res://scripts/first_area.gd" id="1_fh0ai"]
 [ext_resource type="Texture2D" uid="uid://chup5n62y3gf8" path="res://images/arvore.png" id="1_urf0j"]
 [ext_resource type="PackedScene" uid="uid://codiq4jo2ftrt" path="res://scenes/floor.tscn" id="2_o6oav"]
+[ext_resource type="Script" uid="uid://bxnh2dqa3xis5" path="res://scripts/entradas.gd" id="3_iwbks"]
 [ext_resource type="Texture2D" uid="uid://eqocj22nbbw2" path="res://images/caverna.png" id="3_j6tfh"]
 [ext_resource type="Texture2D" uid="uid://cbgkyxw8ovclf" path="res://images/cave_central.png" id="4_fh0ai"]
 [ext_resource type="PackedScene" uid="uid://d3g8re3eljrv8" path="res://scenes/entrada.tscn" id="4_o6oav"]
 [ext_resource type="Texture2D" uid="uid://bp1j5c7b35vhg" path="res://images/enterArrow.png" id="6_4q1ry"]
 [ext_resource type="PackedScene" uid="uid://cc26gg5huh236" path="res://scenes/player.tscn" id="6_j6tfh"]
+[ext_resource type="Texture2D" uid="uid://c8n5wy3wusat" path="res://scenes/black_screen.png" id="10_k1hnx"]
+[ext_resource type="PackedScene" uid="uid://bmm0ovx87n0if" path="res://scenes/entrada_auto.tscn" id="11_k8fe5"]
+[ext_resource type="PackedScene" uid="uid://ccgtucabper6c" path="res://scenes/enemy_test.tscn" id="12_uvkhp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fh0ai"]
-size = Vector2(20, 20.375)
+size = Vector2(20, 8.0625)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4q1ry"]
+size = Vector2(22.833328, 4.9375)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iwbks"]
+size = Vector2(115, 11.625)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k1hnx"]
+size = Vector2(1052, 24)
+
+[sub_resource type="Animation" id="Animation_iwbks"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BlackScreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_k1hnx"]
+resource_name = "loading1"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BlackScreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_k8fe5"]
+resource_name = "loading2"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BlackScreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k8fe5"]
+_data = {
+&"RESET": SubResource("Animation_iwbks"),
+&"loading1": SubResource("Animation_k1hnx"),
+&"loading2": SubResource("Animation_k8fe5")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uvkhp"]
+size = Vector2(20, 176)
 
 [node name="first_area" type="Node2D" unique_id=596757926]
 script = ExtResource("1_fh0ai")
+
+[node name="player" parent="." unique_id=856049245 instance=ExtResource("6_j6tfh")]
+unique_name_in_owner = true
+position = Vector2(12, 230)
+
+[node name="entradas" type="Node" parent="." unique_id=508396198]
+script = ExtResource("3_iwbks")
+
+[node name="entrada01" parent="entradas" unique_id=251451387 instance=ExtResource("4_o6oav")]
+position = Vector2(546, 208)
+scale = Vector2(12, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="entradas/entrada01" unique_id=410557159]
+position = Vector2(-0.08333206, 5.90625)
+shape = SubResource("RectangleShape2D_fh0ai")
+
+[node name="EnterArrow" type="Sprite2D" parent="entradas/entrada01" unique_id=1397858052]
+visible = false
+position = Vector2(0.08333588, -16.25)
+scale = Vector2(0.035460994, 0.05319149)
+texture = ExtResource("6_4q1ry")
+
+[node name="posSaida" type="Node2D" parent="entradas/entrada01" unique_id=1074138018]
+position = Vector2(139.66667, -2.5)
+
+[node name="entrada10" parent="entradas" unique_id=1027853176 instance=ExtResource("4_o6oav")]
+z_index = 2
+position = Vector2(2419, 211)
+scale = Vector2(12, 8)
+
+[node name="EnterArrow" type="Sprite2D" parent="entradas/entrada10" unique_id=1119859036]
+visible = false
+position = Vector2(0.08333588, -16.25)
+scale = Vector2(0.035460994, 0.05319149)
+texture = ExtResource("6_4q1ry")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="entradas/entrada10" unique_id=2044516303]
+position = Vector2(1.5258789e-05, 7.09375)
+shape = SubResource("RectangleShape2D_4q1ry")
+
+[node name="posSaida" type="Node2D" parent="entradas/entrada10" unique_id=433584098]
+position = Vector2(-173.08333, -0.625)
 
 [node name="Arvore" type="Sprite2D" parent="." unique_id=1235052074]
 position = Vector2(-4, -426)
@@ -25,42 +136,67 @@ position = Vector2(95, 114)
 texture = ExtResource("3_j6tfh")
 
 [node name="floor" parent="Caverna" unique_id=2068233716 instance=ExtResource("2_o6oav")]
-position = Vector2(-72, 201)
-scale = Vector2(50, 2)
-
-[node name="entrada" parent="Caverna" unique_id=251451387 instance=ExtResource("4_o6oav")]
-position = Vector2(451, 94)
+position = Vector2(-77, 194)
 scale = Vector2(12, 8)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Caverna/entrada" unique_id=410557159]
-position = Vector2(-0.083333336, -0.25)
-shape = SubResource("RectangleShape2D_fh0ai")
-
-[node name="EnterArrow" type="Sprite2D" parent="Caverna/entrada" unique_id=377097390]
-visible = false
-position = Vector2(-0.33333254, -15.75)
-scale = Vector2(0.03235816, 0.048537236)
-texture = ExtResource("6_4q1ry")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Caverna/floor" unique_id=1130445842]
+position = Vector2(6.3333335, 4.1875)
+shape = SubResource("RectangleShape2D_iwbks")
 
 [node name="CaveCentral" type="Sprite2D" parent="." unique_id=156120402]
+z_index = -12
 position = Vector2(2028.0001, 81.99994)
 scale = Vector2(1.35559, 1.35559)
 texture = ExtResource("4_fh0ai")
 
-[node name="floor2" parent="CaveCentral" unique_id=505940209 instance=ExtResource("2_o6oav")]
-position = Vector2(16.22902, 168.93019)
-scale = Vector2(36.88431, 0.7376862)
+[node name="floor" parent="CaveCentral" unique_id=468646482 instance=ExtResource("2_o6oav")]
+position = Vector2(-131.30823, 163.76639)
+scale = Vector2(0.7376862, 0.7376862)
 
-[node name="floor3" parent="CaveCentral" unique_id=1745992312 instance=ExtResource("2_o6oav")]
-position = Vector2(688.9988, -0.7376251)
-scale = Vector2(36.88431, 0.7376862)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CaveCentral/floor" unique_id=1143812090]
+position = Vector2(177, -2)
+shape = SubResource("RectangleShape2D_k1hnx")
 
-[node name="player" parent="." unique_id=856049245 instance=ExtResource("6_j6tfh")]
-position = Vector2(0, -3)
+[node name="floor2" parent="CaveCentral" unique_id=365622294 instance=ExtResource("2_o6oav")]
+position = Vector2(358.5154, 4.5776367e-05)
+scale = Vector2(0.7376862, 0.7376862)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CaveCentral/floor2" unique_id=761500521]
+position = Vector2(177, -2)
+shape = SubResource("RectangleShape2D_k1hnx")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1813336631]
 
 [node name="Camera2D" type="Camera2D" parent="CanvasLayer" unique_id=1584192135]
+position = Vector2(577, 324)
 position_smoothing_enabled = true
 
-[connection signal="enter" from="Caverna/entrada" to="." method="_on_entrada_enter"]
+[node name="BlackScreen" type="Sprite2D" parent="CanvasLayer" unique_id=1160169638]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(565, 328)
+texture = ExtResource("10_k1hnx")
+
+[node name="loading" type="AnimationPlayer" parent="CanvasLayer" unique_id=308410060]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_k8fe5")
+
+[node name="entranceAuto" parent="." unique_id=365865322 instance=ExtResource("11_k8fe5")]
+position = Vector2(2547, -13)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="entranceAuto" unique_id=1482991309]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_uvkhp")
+
+[node name="posSaida" type="Node2D" parent="entranceAuto" unique_id=585878987]
+position = Vector2(-1005.00006, 18)
+
+[node name="enemyTest" parent="." unique_id=1691512735 instance=ExtResource("12_uvkhp")]
+position = Vector2(1529, 232)
+
+[node name="enemyTest2" parent="." unique_id=1719195852 instance=ExtResource("12_uvkhp")]
+position = Vector2(753, 238)
+
+[node name="enemyTest3" parent="." unique_id=393547801 instance=ExtResource("12_uvkhp")]
+position = Vector2(-565, 252)
+
+[connection signal="animation_finished" from="CanvasLayer/loading" to="player" method="_on_loading_animation_finished"]

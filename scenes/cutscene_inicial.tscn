@@ -1,0 +1,151 @@
+[gd_scene format=3 uid="uid://cb0t1mfia82rs"]
+
+[ext_resource type="Script" uid="uid://dqqtkrgsywbub" path="res://scripts/cutscene_inicial.gd" id="1_332qb"]
+[ext_resource type="Texture2D" uid="uid://chup5n62y3gf8" path="res://images/arvore.png" id="1_bib33"]
+[ext_resource type="Texture2D" uid="uid://bhknd4ijmfr58" path="res://images/maca.png" id="2_332qb"]
+[ext_resource type="Texture2D" uid="uid://c8n5wy3wusat" path="res://scenes/black_screen.png" id="4_7krtc"]
+[ext_resource type="Texture2D" uid="uid://eqocj22nbbw2" path="res://images/caverna.png" id="4_tobb0"]
+[ext_resource type="PackedScene" uid="uid://codiq4jo2ftrt" path="res://scenes/floor.tscn" id="5_1epil"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tobb0"]
+size = Vector2(20, 99.41774)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1epil"]
+radius = 10.049875
+
+[sub_resource type="Animation" id="Animation_iwbks"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BlackScreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_k1hnx"]
+resource_name = "loading1"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BlackScreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_k8fe5"]
+resource_name = "loading2"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BlackScreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_br847"]
+_data = {
+&"RESET": SubResource("Animation_iwbks"),
+&"loading1": SubResource("Animation_k1hnx"),
+&"loading2": SubResource("Animation_k8fe5")
+}
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7krtc"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_br847"]
+
+[node name="cutscene_inicial" type="Node2D" unique_id=133688127]
+script = ExtResource("1_332qb")
+
+[node name="Arvore" type="Sprite2D" parent="." unique_id=8462903]
+position = Vector2(11, -4)
+texture = ExtResource("1_bib33")
+
+[node name="floor" type="StaticBody2D" parent="Arvore" unique_id=2020314792]
+position = Vector2(63, 174)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Arvore/floor" unique_id=1096804470]
+position = Vector2(-90, -4)
+polygon = PackedVector2Array(-2, -3, 68, -12, 138, -9, 225, 20, -32, 105)
+
+[node name="floor1" type="StaticBody2D" parent="Arvore" unique_id=818576812]
+position = Vector2(-185, 245)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arvore/floor1" unique_id=1988486204]
+position = Vector2(70.97066, -13.99408)
+rotation = 0.23212878
+shape = SubResource("RectangleShape2D_tobb0")
+
+[node name="corpoMaca" type="RigidBody2D" parent="." unique_id=1891092675]
+position = Vector2(-3, -87)
+
+[node name="Maca" type="Sprite2D" parent="corpoMaca" unique_id=257990545]
+position = Vector2(-1, 1)
+scale = Vector2(0.57894737, 0.57894737)
+texture = ExtResource("2_332qb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="corpoMaca" unique_id=1987272177]
+position = Vector2(-1, 9)
+shape = SubResource("CircleShape2D_1epil")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2037322622]
+
+[node name="Camera2D" type="Camera2D" parent="CanvasLayer" unique_id=1413982003]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+
+[node name="BlackScreen" type="Sprite2D" parent="CanvasLayer" unique_id=1011408859]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(565, 328)
+texture = ExtResource("4_7krtc")
+
+[node name="loading" type="AnimationPlayer" parent="CanvasLayer" unique_id=326504053]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_br847")
+
+[node name="timerCair" type="Timer" parent="." unique_id=1455505566]
+wait_time = 3.5
+one_shot = true
+autostart = true
+
+[node name="timerAcabar" type="Timer" parent="." unique_id=1322790143]
+wait_time = 1.9499999999999997
+one_shot = true
+
+[node name="Caverna" type="Sprite2D" parent="." unique_id=1484256532]
+z_index = -5
+position = Vector2(-14, 500)
+texture = ExtResource("4_tobb0")
+
+[node name="floor" parent="." unique_id=2068233716 instance=ExtResource("5_1epil")]
+position = Vector2(-266, 654)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor" unique_id=704654345]
+shape = SubResource("WorldBoundaryShape2D_7krtc")
+
+[node name="floor2" parent="." unique_id=165817415 instance=ExtResource("5_1epil")]
+position = Vector2(-289, 602)
+rotation = 1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor2" unique_id=1452353253]
+shape = SubResource("WorldBoundaryShape2D_br847")
+
+[connection signal="animation_finished" from="CanvasLayer/loading" to="." method="_on_loading_animation_finished"]
+[connection signal="timeout" from="timerCair" to="." method="_on_timer_cair_timeout"]
+[connection signal="timeout" from="timerAcabar" to="." method="_on_timer_acabar_timeout"]

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bmm0ovx87n0if"]
+
+[ext_resource type="Script" uid="uid://6wg56j6sy2b3" path="res://scripts/entrada_auto.gd" id="1_ve6ys"]
+
+[node name="entranceAuto" type="Area2D" unique_id=365865322]
+script = ExtResource("1_ve6ys")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

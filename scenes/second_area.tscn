@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://c3wo2lt26n5vj"]
+
+[ext_resource type="PackedScene" uid="uid://d3g8re3eljrv8" path="res://scenes/entrada.tscn" id="1_oti4k"]
+[ext_resource type="Texture2D" uid="uid://bp1j5c7b35vhg" path="res://images/enterArrow.png" id="2_wbhli"]
+[ext_resource type="Texture2D" uid="uid://cbgkyxw8ovclf" path="res://images/cave_central.png" id="3_308xq"]
+[ext_resource type="PackedScene" uid="uid://codiq4jo2ftrt" path="res://scenes/floor.tscn" id="4_2anwn"]
+[ext_resource type="PackedScene" uid="uid://bmm0ovx87n0if" path="res://scenes/entrada_auto.tscn" id="5_8tmsi"]
+[ext_resource type="PackedScene" uid="uid://cc26gg5huh236" path="res://scenes/player.tscn" id="6_ymk8a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ntj7i"]
+size = Vector2(22.833328, 4.9375)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xnptu"]
+size = Vector2(1052, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_213rp"]
+size = Vector2(20, 176)
+
+[node name="second_area" type="Node2D" unique_id=994189577]
+
+[node name="posSaida" type="Node2D" parent="." unique_id=1904770690]
+position = Vector2(139.66667, -2.5)
+
+[node name="entrada10" parent="." unique_id=1027853176 instance=ExtResource("1_oti4k")]
+z_index = 2
+position = Vector2(2419, 211)
+scale = Vector2(12, 8)
+
+[node name="EnterArrow" type="Sprite2D" parent="entrada10" unique_id=1702022454]
+visible = false
+position = Vector2(0.08333588, -16.25)
+scale = Vector2(0.035460994, 0.05319149)
+texture = ExtResource("2_wbhli")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="entrada10" unique_id=1370531712]
+position = Vector2(1.5258789e-05, 7.09375)
+shape = SubResource("RectangleShape2D_ntj7i")
+
+[node name="posSaida" type="Node2D" parent="entrada10" unique_id=1223281182]
+position = Vector2(-173.08333, -0.625)
+
+[node name="CaveCentral" type="Sprite2D" parent="." unique_id=1074688935]
+z_index = -12
+position = Vector2(2028.0001, 81.99994)
+scale = Vector2(1.35559, 1.35559)
+texture = ExtResource("3_308xq")
+
+[node name="floor" parent="CaveCentral" unique_id=2068233716 instance=ExtResource("4_2anwn")]
+position = Vector2(-131.30823, 163.76639)
+scale = Vector2(0.7376862, 0.7376862)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CaveCentral/floor" unique_id=1806759852]
+position = Vector2(177, -2)
+shape = SubResource("RectangleShape2D_xnptu")
+
+[node name="floor2" parent="CaveCentral" unique_id=198669263 instance=ExtResource("4_2anwn")]
+position = Vector2(358.5154, 4.5776367e-05)
+scale = Vector2(0.7376862, 0.7376862)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CaveCentral/floor2" unique_id=1218110443]
+position = Vector2(177, -2)
+shape = SubResource("RectangleShape2D_xnptu")
+
+[node name="entranceAuto" parent="." unique_id=365865322 instance=ExtResource("5_8tmsi")]
+position = Vector2(2547, -13)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="entranceAuto" unique_id=1376288858]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_213rp")
+
+[node name="posSaida" type="Node2D" parent="entranceAuto" unique_id=1145966777]
+position = Vector2(-1005.00006, 18)
+
+[node name="player" parent="." unique_id=856049245 instance=ExtResource("6_ymk8a")]
+position = Vector2(2216, 215)

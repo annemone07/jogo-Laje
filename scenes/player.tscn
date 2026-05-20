@@ -6,6 +6,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
 size = Vector2(85, 134)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
+size = Vector2(53, 110)
+
 [node name="player" type="CharacterBody2D" unique_id=856049245]
 script = ExtResource("1_g2els")
 
@@ -14,10 +17,31 @@ position = Vector2(-1, -10)
 texture = ExtResource("1_3vyb7")
 
 [node name="coyoteTimer" type="Timer" parent="." unique_id=2067475937]
-wait_time = 0.55
+wait_time = 0.216
+one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1854669812]
 position = Vector2(-0.5, -7)
 shape = SubResource("RectangleShape2D_g2els")
 
+[node name="areaAtk" type="Area2D" parent="." unique_id=798116966]
+visible = false
+position = Vector2(65, -8)
+collision_mask = 2
+
+[node name="atkDireita" type="CollisionShape2D" parent="areaAtk" unique_id=643237879]
+shape = SubResource("RectangleShape2D_qhqgy")
+
+[node name="atkEsquerda" type="CollisionShape2D" parent="areaAtk" unique_id=1185491867]
+position = Vector2(-130, 0)
+shape = SubResource("RectangleShape2D_qhqgy")
+
+[node name="timerAttack" type="Timer" parent="." unique_id=1350838517]
+wait_time = 0.41
+one_shot = true
+
+[node name="timerRanged" type="Timer" parent="." unique_id=487313558]
+one_shot = true
+
 [connection signal="timeout" from="coyoteTimer" to="." method="_on_coyote_timer_timeout"]
+[connection signal="timeout" from="timerAttack" to="." method="_on_timer_attack_timeout"]

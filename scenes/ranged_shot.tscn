@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://hxtfnkmp6oye"]
+
+[ext_resource type="Texture2D" uid="uid://bhknd4ijmfr58" path="res://images/maca.png" id="1_2k3ib"]
+[ext_resource type="Script" uid="uid://car8knehig8r2" path="res://scripts/ranged_shot.gd" id="1_ocokt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ocokt"]
+size = Vector2(20, 42)
+
+[node name="rangedShot" type="Area2D" unique_id=733609489]
+script = ExtResource("1_ocokt")
+
+[node name="Maca" type="Sprite2D" parent="." unique_id=93650354]
+scale = Vector2(0.57894737, 0.57894737)
+texture = ExtResource("1_2k3ib")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=29772222]
+shape = SubResource("RectangleShape2D_ocokt")
+
+[node name="timerDesaparecer" type="Timer" parent="." unique_id=1441783387]
+one_shot = true

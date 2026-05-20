@@ -28,13 +28,13 @@ func _physics_process(delta: float) -> void:
 	else:
 		direction = 0
 	
-	if player.attacked and hitbox.overlaps_area(player.get_node("areaAtk")) and contador_i_frames==0:
+	if player.hasAttacked and (hitbox.overlaps_area(player.get_node("areaAtk"))) and contador_i_frames==0:
 		hp-=1
 		velocity.x = -direction * SPEED*20
 		print(hp)
 		contador_i_frames=1
 	
-	if !player.attacked:
+	if !player.hasAttacked:
 		contador_i_frames=0
 	# Handle jump.
 	#if Input.is_action_just_pressed("ui_accept") and is_on_floor():

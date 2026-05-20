@@ -1,4 +1,4 @@
-
+class_name Enemy
 
 extends CharacterBody2D
 
@@ -27,7 +27,12 @@ func _physics_process(delta: float) -> void:
 			direction = 1
 	else:
 		direction = 0
-
+	
+	if player.hasAttacked and (hitbox.overlaps_area(player.get_node("areaAtk"))) and contador_i_frames==0:
+		hp-=1
+		velocity.x = -direction * SPEED*20
+		print(hp)
+		contador_i_frames=1
 	
 	if !player.hasAttacked:
 		contador_i_frames=0

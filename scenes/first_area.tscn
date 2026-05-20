@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://d3g8re3eljrv8" path="res://scenes/entrada.tscn" id="4_o6oav"]
 [ext_resource type="Texture2D" uid="uid://bp1j5c7b35vhg" path="res://images/enterArrow.png" id="6_4q1ry"]
 [ext_resource type="PackedScene" uid="uid://cc26gg5huh236" path="res://scenes/player.tscn" id="6_j6tfh"]
-[ext_resource type="Texture2D" uid="uid://c8n5wy3wusat" path="res://scenes/black_screen.png" id="10_k1hnx"]
+[ext_resource type="Texture2D" uid="uid://c8n5wy3wusat" path="res://images/black_screen.png" id="10_k1hnx"]
 [ext_resource type="PackedScene" uid="uid://bmm0ovx87n0if" path="res://scenes/entrada_auto.tscn" id="11_k8fe5"]
 [ext_resource type="PackedScene" uid="uid://ccgtucabper6c" path="res://scenes/enemy_test.tscn" id="12_uvkhp"]
 [ext_resource type="PackedScene" uid="uid://c873fxl18txli" path="res://scenes/enemy_chaser.tscn" id="13_1gtlx"]
@@ -203,4 +203,5 @@ position = Vector2(-565, 252)
 [node name="Enemy_chaser" parent="." unique_id=1182357391 groups=["enemies"] instance=ExtResource("13_1gtlx")]
 position = Vector2(274, 258)
 
+[connection signal="morreu" from="player" to="." method="_on_player_morreu"]
 [connection signal="animation_finished" from="CanvasLayer/loading" to="player" method="_on_loading_animation_finished"]

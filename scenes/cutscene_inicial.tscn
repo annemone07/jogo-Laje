@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dqqtkrgsywbub" path="res://scripts/cutscene_inicial.gd" id="1_332qb"]
 [ext_resource type="Texture2D" uid="uid://chup5n62y3gf8" path="res://images/arvore.png" id="1_bib33"]
 [ext_resource type="Texture2D" uid="uid://bhknd4ijmfr58" path="res://images/maca.png" id="2_332qb"]
-[ext_resource type="Texture2D" uid="uid://c8n5wy3wusat" path="res://scenes/black_screen.png" id="4_7krtc"]
+[ext_resource type="Texture2D" uid="uid://c8n5wy3wusat" path="res://images/black_screen.png" id="4_7krtc"]
 [ext_resource type="Texture2D" uid="uid://eqocj22nbbw2" path="res://images/caverna.png" id="4_tobb0"]
 [ext_resource type="PackedScene" uid="uid://codiq4jo2ftrt" path="res://scenes/floor.tscn" id="5_1epil"]
 
@@ -120,12 +120,12 @@ unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_br847")
 
 [node name="timerCair" type="Timer" parent="." unique_id=1455505566]
-wait_time = 3.5
+wait_time = 5.0
 one_shot = true
 autostart = true
 
 [node name="timerAcabar" type="Timer" parent="." unique_id=1322790143]
-wait_time = 1.9499999999999997
+wait_time = 1.9499999999999995
 one_shot = true
 
 [node name="Caverna" type="Sprite2D" parent="." unique_id=1484256532]

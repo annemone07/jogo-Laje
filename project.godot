@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Jogo Laje"
-run/main_scene="uid://c3l5svqdj55d6"
+run/main_scene="uid://dkmerpadix720"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

@@ -191,16 +191,16 @@ shape = SubResource("RectangleShape2D_uvkhp")
 [node name="posSaida" type="Node2D" parent="entranceAuto" unique_id=585878987]
 position = Vector2(-1005.00006, 18)
 
-[node name="enemyTest" parent="." unique_id=1691512735 instance=ExtResource("12_uvkhp")]
+[node name="enemyTest" parent="." unique_id=1691512735 groups=["enemies"] instance=ExtResource("12_uvkhp")]
 position = Vector2(1529, 232)
 
-[node name="enemyTest2" parent="." unique_id=1719195852 instance=ExtResource("12_uvkhp")]
+[node name="enemyTest2" parent="." unique_id=1719195852 groups=["enemies"] instance=ExtResource("12_uvkhp")]
 position = Vector2(753, 238)
 
-[node name="enemyTest3" parent="." unique_id=393547801 instance=ExtResource("12_uvkhp")]
+[node name="enemyTest3" parent="." unique_id=393547801 groups=["enemies"] instance=ExtResource("12_uvkhp")]
 position = Vector2(-565, 252)
 
-[node name="Enemy_chaser" parent="." unique_id=1182357391 instance=ExtResource("13_1gtlx")]
+[node name="Enemy_chaser" parent="." unique_id=1182357391 groups=["enemies"] instance=ExtResource("13_1gtlx")]
 position = Vector2(274, 258)
 
 [connection signal="animation_finished" from="CanvasLayer/loading" to="player" method="_on_loading_animation_finished"]

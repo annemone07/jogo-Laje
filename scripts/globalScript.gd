@@ -4,6 +4,8 @@ var playerDirection=1
 var playerPos
 var salaAtual
 var salaAnterior
+var hpPlayer
+var manaPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

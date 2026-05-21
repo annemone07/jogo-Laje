@@ -15,8 +15,6 @@
 [ext_resource type="Texture2D" uid="uid://c315jv2g3esp7" path="res://images/placeholder_vida.png" id="12_rxr1k"]
 [ext_resource type="PackedScene" uid="uid://ccgtucabper6c" path="res://scenes/enemy_test.tscn" id="12_uvkhp"]
 [ext_resource type="PackedScene" uid="uid://c873fxl18txli" path="res://scenes/enemy_chaser.tscn" id="13_1gtlx"]
-[ext_resource type="PackedScene" uid="uid://dcsy17k6etlsi" path="res://scenes/hp_restore.tscn" id="14_5x4gp"]
-[ext_resource type="PackedScene" uid="uid://bphn4k17rkt" path="res://scenes/mana_restore.tscn" id="15_2cyab"]
 [ext_resource type="Texture2D" uid="uid://ju4tl5g7w1uy" path="res://images/placeholder_mana.png" id="13_mkumm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fh0ai"]
@@ -186,20 +184,18 @@ texture = ExtResource("10_k1hnx")
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_k8fe5")
 
-[node name="organização UI" type="Node2D" parent="CanvasLayer" unique_id=298491020]
+[node name="organização UI" type="Node" parent="CanvasLayer" unique_id=1973254216]
 script = ExtResource("11_u5t67")
 
 [node name="PlaceholderVida" type="Sprite2D" parent="CanvasLayer/organização UI" unique_id=301645256]
-position = Vector2(31.000061, 536)
+position = Vector2(390.5, 549)
 scale = Vector2(1.2396553, 0.058577374)
 texture = ExtResource("12_rxr1k")
-centered = false
 
 [node name="PlaceholderMana" type="Sprite2D" parent="CanvasLayer/organização UI" unique_id=1040452178]
-position = Vector2(31, 594)
+position = Vector2(390.5, 610)
 scale = Vector2(1.24, 0.059)
 texture = ExtResource("13_mkumm")
-centered = false
 
 [node name="entranceAuto" parent="." unique_id=365865322 instance=ExtResource("11_k8fe5")]
 position = Vector2(2547, -13)
@@ -221,13 +217,7 @@ position = Vector2(753, 238)
 position = Vector2(-565, 252)
 
 [node name="Enemy_chaser" parent="." unique_id=1182357391 groups=["enemies"] instance=ExtResource("13_1gtlx")]
-position = Vector2(282, 253)
-
-[node name="Hp_restore" parent="." unique_id=169418490 instance=ExtResource("14_5x4gp")]
-position = Vector2(-125, 117)
-
-[node name="mana_restore" parent="." unique_id=1233563896 instance=ExtResource("15_2cyab")]
-position = Vector2(-79, 92)
+position = Vector2(274, 258)
 
 [connection signal="morreu" from="player" to="." method="_on_player_morreu"]
 [connection signal="animation_finished" from="CanvasLayer/loading" to="player" method="_on_loading_animation_finished"]

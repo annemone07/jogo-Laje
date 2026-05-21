@@ -3,7 +3,6 @@ class_name Jogador
 extends CharacterBody2D
 signal trocarSala
 signal morreu
-var hp=10
 var knockbackDirection=0
 var posVoltar=global_position
 var invulnerable=false
@@ -15,6 +14,10 @@ var canJump = true
 var contadorCoyote=0
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
+@export var max_mana: int = 5
+@export var max_hp: int = 5
+@onready var mana_atual = max_mana
+@onready var hp_atual = max_hp
 @onready var player: Jogador = $"."
 @onready var coyote_timer: Timer = $coyoteTimer
 @onready var loading: AnimationPlayer = %loading
@@ -31,13 +34,14 @@ func _physics_process(delta: float) -> void:
 	#print(canEnter)
 	entrar()
 	
-	if hp<=0:
+	if hp_atual<=0:
 		GlobalScript.salaAtual = get_parent().scene_file_path
 		morreu.emit()
 	
 	if takeDmg and not invulnerable:
-			hp-=1
-			print(hp)
+			hp_atual-=1
+			#print ("Esse é um máximoooooo:", max_hp)
+			print(hp_atual)
 			takeDmg=false
 			invulnerable=true
 	
@@ -109,12 +113,14 @@ func attack():
 		hasAttacked=true
 
 func ranged():
-	if Input.is_action_just_pressed("rangedAttack") and timer_ranged.is_stopped():
+	if Input.is_action_just_pressed("rangedAttack") and timer_ranged.is_stopped() && mana_atual > 0:
 		var bala = preload("res://scenes/ranged_shot.tscn").instantiate()
 		#var balaCarregada = bala.instantiate()
 		player.add_sibling(bala)
 		#timer_ranged.start()
 		hasAttacked=true
+		mana_atual -= 1
+		print ("mana atual:", mana_atual)
 
 func _on_timer_attack_timeout() -> void:
 	hasAttacked=false

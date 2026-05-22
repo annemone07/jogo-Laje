@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://cwvy52ab8q7d8"]
+
+[ext_resource type="Texture2D" uid="uid://4mool6m6vwle" path="res://images/boss1_placeholder.png" id="1_dlmty"]
+[ext_resource type="Script" uid="uid://dnerdyp2c3osm" path="res://scripts/boss.gd" id="1_neq0i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_neq0i"]
+size = Vector2(344, 284)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jncid"]
+size = Vector2(348, 288)
+
+[node name="boss" type="CharacterBody2D" unique_id=1621797502]
+script = ExtResource("1_neq0i")
+
+[node name="Boss1Placeholder" type="Sprite2D" parent="." unique_id=22765467]
+scale = Vector2(0.6, 0.603)
+texture = ExtResource("1_dlmty")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1901060384]
+shape = SubResource("RectangleShape2D_neq0i")
+
+[node name="hitbox" type="Area2D" parent="." unique_id=1014607121]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" unique_id=744908922]
+shape = SubResource("RectangleShape2D_jncid")
+
+[node name="launchAtkTimer" type="Timer" parent="." unique_id=1881477266]
+wait_time = 2.5
+one_shot = true
+
+[node name="canJumpTimer" type="Timer" parent="." unique_id=462177445]
+wait_time = 3.5
+one_shot = true
+
+[node name="timerKnockback" type="Timer" parent="." unique_id=660148759]
+wait_time = 0.6
+one_shot = true
+
+[connection signal="timeout" from="launchAtkTimer" to="." method="_on_launch_atk_timer_timeout"]
+[connection signal="timeout" from="timerKnockback" to="." method="_on_timer_knockback_timeout"]

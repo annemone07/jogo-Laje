@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://c8houob34s8f"]
+
+[ext_resource type="Texture2D" uid="uid://bv3m88gs3dc2t" path="res://icon.svg" id="1_afvl6"]
+[ext_resource type="Script" uid="uid://drosvv4vp7gdm" path="res://scripts/enemy_shooter.gd" id="1_amqcw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_amqcw"]
+size = Vector2(80, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p4l84"]
+size = Vector2(1024, 640)
+
+[node name="Enemy_shooter" type="CharacterBody2D" unique_id=1700318628]
+script = ExtResource("1_amqcw")
+
+[node name="Enemy_collision" type="CollisionShape2D" parent="." unique_id=381372587]
+shape = SubResource("RectangleShape2D_amqcw")
+
+[node name="Enemy_sprite" type="Sprite2D" parent="Enemy_collision" unique_id=554319946]
+position = Vector2(-7.6293945e-06, 2.861023e-06)
+scale = Vector2(0.625, 0.625)
+texture = ExtResource("1_afvl6")
+
+[node name="Enemy_range" type="Area2D" parent="." unique_id=924124198]
+
+[node name="range" type="CollisionShape2D" parent="Enemy_range" unique_id=1427702784]
+position = Vector2(0, -64)
+shape = SubResource("RectangleShape2D_p4l84")
+debug_color = Color(0.5000876, 0.5746376, 0.27697182, 0.41960785)
+
+[node name="Enemy_hitbox" type="Area2D" parent="." unique_id=1117448374]
+collision_layer = 3
+collision_mask = 3
+
+[node name="hitbox_collision" type="CollisionShape2D" parent="Enemy_hitbox" unique_id=1539781735]
+shape = SubResource("RectangleShape2D_amqcw")
+
+[node name="cooldown" type="Timer" parent="." unique_id=1229050067]
+wait_time = 0.75
+
+[node name="spread" type="Timer" parent="." unique_id=2124162230]
+wait_time = 2.0
+
+[connection signal="body_entered" from="Enemy_range" to="." method="_on_enemy_range_body_entered"]
+[connection signal="body_exited" from="Enemy_range" to="." method="_on_enemy_range_body_exited"]
+[connection signal="timeout" from="cooldown" to="." method="_on_cooldown_timeout"]
+[connection signal="timeout" from="spread" to="." method="_on_spread_timeout"]

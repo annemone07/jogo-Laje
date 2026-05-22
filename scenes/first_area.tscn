@@ -13,9 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://bmm0ovx87n0if" path="res://scenes/entrada_auto.tscn" id="11_k8fe5"]
 [ext_resource type="Script" uid="uid://dmal5hi7hulil" path="res://scripts/organização_ui.gd" id="11_u5t67"]
 [ext_resource type="Texture2D" uid="uid://c315jv2g3esp7" path="res://images/placeholder_vida.png" id="12_rxr1k"]
-[ext_resource type="PackedScene" uid="uid://ccgtucabper6c" path="res://scenes/enemy_test.tscn" id="12_uvkhp"]
 [ext_resource type="PackedScene" uid="uid://c873fxl18txli" path="res://scenes/enemy_chaser.tscn" id="13_1gtlx"]
 [ext_resource type="Texture2D" uid="uid://ju4tl5g7w1uy" path="res://images/placeholder_mana.png" id="13_mkumm"]
+[ext_resource type="PackedScene" uid="uid://c8houob34s8f" path="res://scenes/enemy_shooter.tscn" id="14_0on2y"]
 [ext_resource type="PackedScene" uid="uid://dcsy17k6etlsi" path="res://scenes/hp_restore.tscn" id="14_5x4gp"]
 [ext_resource type="PackedScene" uid="uid://bphn4k17rkt" path="res://scenes/mana_restore.tscn" id="15_2cyab"]
 [ext_resource type="PackedScene" uid="uid://cwvy52ab8q7d8" path="res://scenes/boss.tscn" id="19_0on2y"]
@@ -180,7 +180,7 @@ position_smoothing_enabled = true
 
 [node name="BlackScreen" type="Sprite2D" parent="CanvasLayer" unique_id=1160169638]
 modulate = Color(1, 1, 1, 0)
-position = Vector2(565, 328)
+position = Vector2(637, 330)
 texture = ExtResource("10_k1hnx")
 
 [node name="loading" type="AnimationPlayer" parent="CanvasLayer" unique_id=308410060]
@@ -214,20 +214,17 @@ shape = SubResource("RectangleShape2D_uvkhp")
 [node name="posSaida" type="Node2D" parent="entranceAuto" unique_id=585878987]
 position = Vector2(-1005.00006, 18)
 
-[node name="enemyTest2" parent="." unique_id=1719195852 groups=["enemies"] instance=ExtResource("12_uvkhp")]
-position = Vector2(753, 238)
-
-[node name="enemyTest3" parent="." unique_id=393547801 groups=["enemies"] instance=ExtResource("12_uvkhp")]
-position = Vector2(-565, 252)
-
 [node name="Enemy_chaser" parent="." unique_id=1182357391 groups=["enemies"] instance=ExtResource("13_1gtlx")]
-position = Vector2(282, 253)
+position = Vector2(-485, 253)
+
+[node name="Enemy_shooter" parent="." unique_id=1700318628 instance=ExtResource("14_0on2y")]
+position = Vector2(671, 251)
 
 [node name="Hp_restore" parent="." unique_id=169418490 instance=ExtResource("14_5x4gp")]
-position = Vector2(-125, 117)
+position = Vector2(-165, 24)
 
 [node name="mana_restore" parent="." unique_id=1233563896 instance=ExtResource("15_2cyab")]
-position = Vector2(-79, 92)
+position = Vector2(-115, 25)
 
 [node name="boss" parent="." unique_id=1621797502 groups=["enemies"] instance=ExtResource("19_0on2y")]
 position = Vector2(1677, 140)

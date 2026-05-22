@@ -1,14 +1,16 @@
 extends CharacterBody2D
 
 var hp = 10
-var speed = 150
-var on_range: bool = false
 var current_state = state.IDLE
-enum state {IDLE,HUNT,STUN,DEAD}
+enum state {IDLE,SHOOT,STUN,DEAD}
+var mirando: bool = false
+var contador_i_frames=1
+const BULLET = preload("res://scenes/enemy_bullet.tscn")
+
+@onready var colldown = $cooldown
 @onready var player: Jogador = %player
 @onready var enemy_hitbox: Area2D = $Enemy_hitbox
 @onready var enemy_sprite: Sprite2D = $Enemy_collision/Enemy_sprite
-var contador_i_frames=1
 
 func _physics_process(delta) -> void:
 	print(current_state)
@@ -18,15 +20,16 @@ func _physics_process(delta) -> void:
 	match current_state:
 		state.IDLE:
 			velocity.x = 0
-		state.HUNT:
-			hunting()
+		state.SHOOT:
+			
+			shooting()
 		state.DEAD:
 			queue_free()
 		state.STUN:
 			if enemy_sprite.flip_h:
-				velocity.x = speed * 4
+				velocity.x = 300 * 4
 			else:
-				velocity.x = -speed * 4
+				velocity.x = -300 * 4
 				
 				
 
@@ -37,15 +40,13 @@ func _physics_process(delta) -> void:
 		current_state = state.STUN
 		velocity.y = -330
 		if enemy_sprite.flip_h == false:
-			velocity.x = -speed*2
+			velocity.x = -300*2
 		if enemy_sprite.flip_h == true:
-			velocity.x = speed*2
-			
-		await get_tree().create_timer(0.6).timeout
-		if on_range == true:
-			current_state = state.HUNT
-		if on_range == false:
-			current_state = state.IDLE
+			velocity.x = 300*2
+		$cooldown.stop()
+		$spread.stop()
+		await get_tree().create_timer(0.5).timeout
+		$cooldown.start()
 	if !player.hasAttacked:
 		contador_i_frames=0
 
@@ -56,28 +57,40 @@ func _physics_process(delta) -> void:
 
 
 #detecção
-
-func _on_enemy_range_body_entered(body: Node2D)-> void:
+func _on_enemy_range_body_entered(body: Node2D) -> void:
 	if body == player:
-		on_range = true
-		current_state = state.HUNT
+		mirando = true
+		$cooldown.start()
 
-	else:
-		on_range = false
-		current_state = state.IDLE
-#correndo
+func _on_cooldown_timeout() -> void:
+	$cooldown.stop()
+	current_state = state.SHOOT
+	
 
-func hunting():
+func _on_spread_timeout() -> void:
+	current_state = state.SHOOT
+
+#pew pew pew 
+func shooting():
+	var new_shoot = BULLET.instantiate()
+	var alvo = get_tree().current_scene.find_child("player", true, false)
+	new_shoot.height = global_position.direction_to(alvo.global_position).y
+	add_sibling(new_shoot)
+	new_shoot.position = self.position
 	if player.global_position.x > global_position.x:
-		velocity.x = speed
 		enemy_sprite.flip_h = false
+		new_shoot.direction = 1
 	else:
-		velocity.x = -speed
 		enemy_sprite.flip_h = true
-		
-#parando
+		new_shoot.direction = -1
+	current_state = state.IDLE
+	if mirando == true:
+		$spread.start()
+	
+	
 func _on_enemy_range_body_exited(body: Node2D) -> void:
 	if body == player:
-		on_range = false
 		current_state = state.IDLE
-		velocity.x = 0
+		$cooldown.stop()
+		$spread.stop()
+		

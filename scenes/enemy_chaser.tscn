@@ -7,9 +7,10 @@
 size = Vector2(80, 80)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xdwg6"]
-size = Vector2(384, 80)
+size = Vector2(512, 104)
 
 [node name="Enemy_chaser" type="CharacterBody2D" unique_id=1182357391]
+collision_mask = 3
 script = ExtResource("1_x7y0m")
 
 [node name="Enemy_collision" type="CollisionShape2D" parent="." unique_id=2007287862]
@@ -23,6 +24,7 @@ texture = ExtResource("2_wuvmb")
 [node name="Enemy_range" type="Area2D" parent="." unique_id=1053003867]
 
 [node name="range" type="CollisionShape2D" parent="Enemy_range" unique_id=19114438]
+position = Vector2(0, -12)
 shape = SubResource("RectangleShape2D_xdwg6")
 debug_color = Color(0.5000876, 0.5746376, 0.27697182, 0.41960785)
 

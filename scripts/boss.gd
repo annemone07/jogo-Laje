@@ -26,6 +26,8 @@ func _physics_process(delta: float) -> void:
 	#print(hp)
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+	elif can_jump_timer.is_stopped():
+		can_jump_timer.start()
 	
 	if abs(player.global_position.x - global_position.x)<500:
 		if player.global_position.x - global_position.x<0:
@@ -77,3 +79,11 @@ func _on_launch_atk_timer_timeout() -> void:
 
 func _on_timer_knockback_timeout() -> void:
 	takeKnockback=false
+
+
+func _on_can_jump_timer_timeout() -> void:
+	timer_knockback.start()
+	var x = Vector2(0,-500)
+	velocity = x.normalized() * 900 #lança o player na velocidade do knockback
+	velocity.y -= 300
+	move_and_slide()

@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://ju4tl5g7w1uy" path="res://images/placeholder_mana.png" id="13_mkumm"]
 [ext_resource type="PackedScene" uid="uid://dcsy17k6etlsi" path="res://scenes/hp_restore.tscn" id="14_5x4gp"]
 [ext_resource type="PackedScene" uid="uid://bphn4k17rkt" path="res://scenes/mana_restore.tscn" id="15_2cyab"]
+[ext_resource type="PackedScene" uid="uid://cwvy52ab8q7d8" path="res://scenes/boss.tscn" id="19_0on2y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fh0ai"]
 size = Vector2(20, 8.0625)
@@ -213,9 +214,6 @@ shape = SubResource("RectangleShape2D_uvkhp")
 [node name="posSaida" type="Node2D" parent="entranceAuto" unique_id=585878987]
 position = Vector2(-1005.00006, 18)
 
-[node name="enemyTest" parent="." unique_id=1691512735 groups=["enemies"] instance=ExtResource("12_uvkhp")]
-position = Vector2(1529, 232)
-
 [node name="enemyTest2" parent="." unique_id=1719195852 groups=["enemies"] instance=ExtResource("12_uvkhp")]
 position = Vector2(753, 238)
 
@@ -230,6 +228,9 @@ position = Vector2(-125, 117)
 
 [node name="mana_restore" parent="." unique_id=1233563896 instance=ExtResource("15_2cyab")]
 position = Vector2(-79, 92)
+
+[node name="boss" parent="." unique_id=1621797502 groups=["enemies"] instance=ExtResource("19_0on2y")]
+position = Vector2(1677, 140)
 
 [connection signal="morreu" from="player" to="." method="_on_player_morreu"]
 [connection signal="animation_finished" from="CanvasLayer/loading" to="player" method="_on_loading_animation_finished"]

@@ -11,7 +11,7 @@
 size = Vector2(85, 134)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
-size = Vector2(53, 110)
+size = Vector2(53, 125)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dqkch"]
 size = Vector2(92, 140)
@@ -88,15 +88,10 @@ position = Vector2(-0.5, -7)
 shape = SubResource("RectangleShape2D_g2els")
 
 [node name="areaAtk" type="Area2D" parent="." unique_id=798116966]
-visible = false
-position = Vector2(65, -8)
 collision_mask = 2
 
 [node name="atkDireita" type="CollisionShape2D" parent="areaAtk" unique_id=643237879]
-shape = SubResource("RectangleShape2D_qhqgy")
-
-[node name="atkEsquerda" type="CollisionShape2D" parent="areaAtk" unique_id=1185491867]
-position = Vector2(-130, 0)
+position = Vector2(70, -5.722046e-06)
 shape = SubResource("RectangleShape2D_qhqgy")
 
 [node name="timerAttack" type="Timer" parent="." unique_id=1350838517]

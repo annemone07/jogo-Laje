@@ -13,7 +13,7 @@ var posTp = Vector2(100,100)
 var canJump = true
 var contadorCoyote=0
 const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+const JUMP_VELOCITY = -800.0
 @export var max_mana: int = 5
 @export var max_hp: int = 5
 @onready var mana_atual = max_mana
@@ -65,12 +65,35 @@ func _physics_process(delta: float) -> void:
 		# As good practice, you should replace UI actions with custom gameplay actions.
 		
 		if timer_attack.is_stopped():
-			if direction>0:
-				atk_direita.disabled=false
-				atk_esquerda.disabled=true
-			elif direction<0:
-				atk_direita.disabled=true
-				atk_esquerda.disabled=false
+			var upDown = Input.get_axis("up", "down")
+			print(direction)
+			print(upDown)
+			if direction<0.0:
+				if upDown>0.0:
+					area_atk.rotation_degrees = -225
+				elif upDown<0.0:
+					area_atk.rotation_degrees = -135
+				else:
+					area_atk.rotation_degrees = -180
+			elif direction>0.0:
+				if upDown>0.0:
+					area_atk.rotation_degrees = 45
+				elif upDown<0.0:
+					area_atk.rotation_degrees = -45
+				else:
+					area_atk.rotation_degrees = 0
+			else:
+				if upDown<0:
+					area_atk.rotation_degrees = -90
+				elif upDown>0:
+					area_atk.rotation_degrees = 90
+			print(area_atk.rotation)
+			#if direction>0:
+			#	atk_direita.disabled=false
+			#	atk_esquerda.disabled=true
+			#elif direction<0:
+			#	atk_direita.disabled=true
+			#	atk_esquerda.disabled=false
 		
 		ranged()
 		

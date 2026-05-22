@@ -29,7 +29,7 @@ wait_time = 2.5
 one_shot = true
 
 [node name="canJumpTimer" type="Timer" parent="." unique_id=462177445]
-wait_time = 3.5
+wait_time = 11.644
 one_shot = true
 
 [node name="timerKnockback" type="Timer" parent="." unique_id=660148759]
@@ -37,4 +37,5 @@ wait_time = 0.6
 one_shot = true
 
 [connection signal="timeout" from="launchAtkTimer" to="." method="_on_launch_atk_timer_timeout"]
+[connection signal="timeout" from="canJumpTimer" to="." method="_on_can_jump_timer_timeout"]
 [connection signal="timeout" from="timerKnockback" to="." method="_on_timer_knockback_timeout"]

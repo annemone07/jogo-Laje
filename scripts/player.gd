@@ -48,7 +48,7 @@ func _physics_process(delta: float) -> void:
 	#gravidade
 	if not is_on_floor():
 		if contadorCoyote==0:
-			print("teste")
+			#print("teste")
 			coyote_timer.start()
 			contadorCoyote+=1
 		velocity += get_gravity() * delta
@@ -66,8 +66,8 @@ func _physics_process(delta: float) -> void:
 		
 		if timer_attack.is_stopped():
 			var upDown = Input.get_axis("up", "down")
-			print(direction)
-			print(upDown)
+			#print(direction)
+			#print(upDown)
 			if direction<0.0:
 				if upDown>0.0:
 					area_atk.rotation_degrees = -225
@@ -87,7 +87,7 @@ func _physics_process(delta: float) -> void:
 					area_atk.rotation_degrees = -90
 				elif upDown>0:
 					area_atk.rotation_degrees = 90
-			print(area_atk.rotation)
+			#print(area_atk.rotation)
 			#if direction>0:
 			#	atk_direita.disabled=false
 			#	atk_esquerda.disabled=true
@@ -143,7 +143,7 @@ func ranged():
 		#timer_ranged.start()
 		hasAttacked=true
 		mana_atual -= 1
-		print ("mana atual:", mana_atual)
+		#print ("mana atual:", mana_atual)
 
 func _on_timer_attack_timeout() -> void:
 	hasAttacked=false

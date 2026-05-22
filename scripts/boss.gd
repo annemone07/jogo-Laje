@@ -60,7 +60,7 @@ func _physics_process(delta: float) -> void:
 			#velocity = knockbackDirection.normalized() * 900 #lança o player na velocidade do knockback
 			#velocity.y -= 300
 			contador_i_frames=1
-			print(hp)
+			#print(hp)
 			takeKnockback=true
 		else:
 			velocity.x = direction * SPEED
@@ -70,7 +70,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _on_launch_atk_timer_timeout() -> void:
-	print("bala")
+	#print("bala")
 	var bala = preload("res://scenes/boss_shot.tscn").instantiate()
 	bala.global_position = global_position
 	#var balaCarregada = bala.instantiate()

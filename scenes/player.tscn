@@ -14,7 +14,7 @@ size = Vector2(85, 134)
 size = Vector2(53, 125)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dqkch"]
-size = Vector2(92, 140)
+size = Vector2(92, 143)
 
 [sub_resource type="Animation" id="Animation_tuyoq"]
 resource_name = "low"
@@ -79,6 +79,8 @@ script = ExtResource("1_g2els")
 position = Vector2(-1, -10)
 texture = ExtResource("1_3vyb7")
 
+[node name="player_animations" type="AnimationPlayer" parent="Personagem" unique_id=1185573101]
+
 [node name="coyoteTimer" type="Timer" parent="." unique_id=2067475937]
 wait_time = 0.216
 one_shot = true
@@ -108,8 +110,9 @@ one_shot = true
 [node name="hurtbox" type="Area2D" parent="." unique_id=1875076916]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox" unique_id=2122871068]
-position = Vector2(-1, -10)
+position = Vector2(-1, -8.5)
 shape = SubResource("RectangleShape2D_dqkch")
+debug_color = Color(0.9896454, 0, 0.29347393, 0.41960785)
 
 [node name="player_hud" type="CanvasLayer" parent="." unique_id=818347029]
 script = ExtResource("3_qlg0r")

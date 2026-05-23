@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://d1w6an6np6pqe" path="res://images/coracao.png" id="2_e6joh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vaoft"]
-size = Vector2(48, 48)
+size = Vector2(80, 80)
 
 [node name="Hp_restore" type="Area2D" unique_id=169418490]
 collision_layer = 4

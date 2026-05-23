@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://bicta88rw608e" path="res://scripts/entrada.gd" id="1_jov4l"]
 
 [node name="entrada" type="Area2D" unique_id=1027853176]
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_jov4l")
 
 [node name="delay_voltar" type="Timer" parent="." unique_id=968310974]

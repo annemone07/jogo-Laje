@@ -9,6 +9,7 @@ extends CharacterBody2D
 @onready var launch_atk_timer: Timer = $launchAtkTimer
 @onready var can_jump_timer: Timer = $canJumpTimer
 @onready var timer_knockback: Timer = $timerKnockback
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 var takeKnockback=false
 var hp = 10
@@ -49,18 +50,19 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	
-	if direction:# and not takeKnockback: #decidir se vai implementar knockback no boss
+	if direction and not takeKnockback: #decidir se vai implementar knockback no boss
 		if launch_atk_timer.is_stopped():
 			launch_atk_timer.start()
 		if player.hasAttacked and hitbox.overlaps_area(player.get_node("areaAtk")) and contador_i_frames==0:
 			hp-=1
 			#knockback
-			#timer_knockback.start()
-			#var knockbackDirection = Vector2(-direction,0)
-			#velocity = knockbackDirection.normalized() * 900 #lança o player na velocidade do knockback
-			#velocity.y -= 300
+			timer_knockback.start()
+			var knockbackDirection = Vector2(-direction*400,0)
+			var forcaLancamentoBoss = 1500
+			velocity = knockbackDirection.normalized() * forcaLancamentoBoss #lança o boss na velocidade do knockback
+			velocity.y -= 300
 			contador_i_frames=1
-			#print(hp)
+			print(hp)
 			takeKnockback=true
 		else:
 			velocity.x = direction * SPEED
@@ -72,7 +74,8 @@ func _physics_process(delta: float) -> void:
 func _on_launch_atk_timer_timeout() -> void:
 	#print("bala")
 	var bala = preload("res://scenes/boss_shot.tscn").instantiate()
-	bala.global_position = global_position
+	var AlturaAteTopoBoss=160
+	bala.global_position = global_position + Vector2(0,-AlturaAteTopoBoss)
 	#var balaCarregada = bala.instantiate()
 	boss.add_sibling(bala)
 
@@ -82,8 +85,7 @@ func _on_timer_knockback_timeout() -> void:
 
 
 func _on_can_jump_timer_timeout() -> void:
-	timer_knockback.start()
 	var x = Vector2(0,-500)
-	velocity = x.normalized() * 900 #lança o player na velocidade do knockback
+	velocity = x.normalized() * 450 #pulo
 	velocity.y -= 300
 	move_and_slide()

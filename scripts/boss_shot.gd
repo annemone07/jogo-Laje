@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+@onready var boss_shot: RigidBody2D = $"."
+
 var dir
 var launchSpeed=300
 
@@ -7,8 +9,15 @@ var launchSpeed=300
 func _ready() -> void:
 	#linear_velocity = Vector2(randi_range(100,500),randi_range(100,500))
 	dir = [-1,1].pick_random()
-	apply_impulse(Vector2((dir * launchSpeed),500))
+	apply_impulse(Vector2((dir * launchSpeed),-300))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if boss_shot.sleeping:
+		queue_free()
+
+
+func _on_area_2d_body_entered(body: CharacterBody2D) -> void:
+	if body is Jogador:
+		body.hp_atual-=1
+		queue_free()

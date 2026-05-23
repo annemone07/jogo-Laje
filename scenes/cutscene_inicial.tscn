@@ -79,6 +79,8 @@ texture = ExtResource("1_bib33")
 
 [node name="floor" type="StaticBody2D" parent="Arvore" unique_id=2020314792]
 position = Vector2(63, 174)
+collision_layer = 4
+collision_mask = 7
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Arvore/floor" unique_id=1096804470]
 position = Vector2(-90, -4)
@@ -86,6 +88,8 @@ polygon = PackedVector2Array(-2, -3, 68, -12, 138, -9, 225, 20, -32, 105)
 
 [node name="floor1" type="StaticBody2D" parent="Arvore" unique_id=818576812]
 position = Vector2(-185, 245)
+collision_layer = 4
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Arvore/floor1" unique_id=1988486204]
 position = Vector2(70.97066, -13.99408)
@@ -94,6 +98,7 @@ shape = SubResource("RectangleShape2D_tobb0")
 
 [node name="corpoMaca" type="RigidBody2D" parent="." unique_id=1891092675]
 position = Vector2(-3, -87)
+collision_mask = 4
 
 [node name="Maca" type="Sprite2D" parent="corpoMaca" unique_id=257990545]
 position = Vector2(-1, 1)

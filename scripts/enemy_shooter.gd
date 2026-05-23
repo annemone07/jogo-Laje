@@ -11,9 +11,10 @@ const BULLET = preload("res://scenes/enemy_bullet.tscn")
 @onready var player: Jogador = %player
 @onready var enemy_hitbox: Area2D = $Enemy_hitbox
 @onready var enemy_sprite: Sprite2D = $Enemy_collision/Enemy_sprite
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _physics_process(delta) -> void:
-	print(current_state)
+	#print(current_state)
 	if hp <= 0:
 		current_state = state.DEAD
 #isso fica procurando "como" o inimigo tá
@@ -24,12 +25,14 @@ func _physics_process(delta) -> void:
 			
 			shooting()
 		state.DEAD:
+			animation_player.play("morrer")
+			await animation_player.animation_finished 
 			queue_free()
 		state.STUN:
 			if enemy_sprite.flip_h:
-				velocity.x = 300 * 4
+				velocity.x = 300
 			else:
-				velocity.x = -300 * 4
+				velocity.x = -300
 				
 				
 

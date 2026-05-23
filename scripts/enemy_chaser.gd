@@ -8,10 +8,11 @@ enum state {IDLE,HUNT,STUN,DEAD}
 @onready var player: Jogador = %player
 @onready var enemy_hitbox: Area2D = $Enemy_hitbox
 @onready var enemy_sprite: Sprite2D = $Enemy_collision/Enemy_sprite
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 var contador_i_frames=1
 
 func _physics_process(delta) -> void:
-	print(current_state)
+	#print(current_state)
 	if hp <= 0:
 		current_state = state.DEAD
 #isso fica procurando "como" o inimigo tá
@@ -21,12 +22,14 @@ func _physics_process(delta) -> void:
 		state.HUNT:
 			hunting()
 		state.DEAD:
+			animation_player.play("morrer")
+			await animation_player.animation_finished 
 			queue_free()
 		state.STUN:
 			if enemy_sprite.flip_h:
-				velocity.x = speed * 4
+				velocity.x = speed*2
 			else:
-				velocity.x = -speed * 4
+				velocity.x = -speed*2
 				
 				
 
@@ -37,11 +40,11 @@ func _physics_process(delta) -> void:
 		current_state = state.STUN
 		velocity.y = -330
 		if enemy_sprite.flip_h == false:
-			velocity.x = -speed*2
+			velocity.x = -speed*1.1
 		if enemy_sprite.flip_h == true:
-			velocity.x = speed*2
+			velocity.x = speed*1.1
 			
-		await get_tree().create_timer(0.6).timeout
+		await get_tree().create_timer(0.3).timeout
 		if on_range == true:
 			current_state = state.HUNT
 		if on_range == false:

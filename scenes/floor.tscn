@@ -1,3 +1,5 @@
 [gd_scene format=3 uid="uid://codiq4jo2ftrt"]
 
 [node name="floor" type="StaticBody2D" unique_id=2068233716]
+collision_layer = 4
+collision_mask = 3

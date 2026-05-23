@@ -6,7 +6,11 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_232iv"]
 radius = 22.022715
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_6qg7h"]
+radius = 24.0
+
 [node name="boss_shot" type="RigidBody2D" unique_id=1511906503]
+collision_mask = 6
 script = ExtResource("1_6qg7h")
 
 [node name="BossRangedPlaceholder" type="Sprite2D" parent="." unique_id=128496514]
@@ -17,3 +21,11 @@ texture = ExtResource("2_gmocx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=331110652]
 shape = SubResource("CircleShape2D_232iv")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=832469411]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2045585860]
+shape = SubResource("CircleShape2D_6qg7h")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

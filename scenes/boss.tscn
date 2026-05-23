@@ -10,6 +10,7 @@ size = Vector2(344, 284)
 size = Vector2(348, 288)
 
 [node name="boss" type="CharacterBody2D" unique_id=1621797502]
+collision_mask = 4
 script = ExtResource("1_neq0i")
 
 [node name="Boss1Placeholder" type="Sprite2D" parent="." unique_id=22765467]
@@ -20,6 +21,7 @@ texture = ExtResource("1_dlmty")
 shape = SubResource("RectangleShape2D_neq0i")
 
 [node name="hitbox" type="Area2D" parent="." unique_id=1014607121]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" unique_id=744908922]
 shape = SubResource("RectangleShape2D_jncid")

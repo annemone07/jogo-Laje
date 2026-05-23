@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://w8h3q5m0qkyk"]
 
 [ext_resource type="Script" uid="uid://dd1qnnjkh4cf4" path="res://scripts/boss_shot.gd" id="1_6qg7h"]
-[ext_resource type="Texture2D" uid="uid://dcn4ao5bww45m" path="res://images/boss_ranged_placeholder.png" id="2_gmocx"]
+[ext_resource type="Texture2D" uid="uid://34gl08fclipo" path="res://images/projectiles/balaBoss.png" id="2_6qg7h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_232iv"]
 radius = 22.022715
@@ -15,9 +15,9 @@ script = ExtResource("1_6qg7h")
 
 [node name="BossRangedPlaceholder" type="Sprite2D" parent="." unique_id=128496514]
 z_index = 15
-position = Vector2(0, 1.1920929e-07)
-scale = Vector2(0.17996109, 0.17996109)
-texture = ExtResource("2_gmocx")
+position = Vector2(-5.9604645e-08, 5.9604645e-08)
+scale = Vector2(0.1008317, 0.1008317)
+texture = ExtResource("2_6qg7h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=331110652]
 shape = SubResource("CircleShape2D_232iv")

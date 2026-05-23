@@ -49,7 +49,7 @@ func hp_check():
 		life = max_life
 	for barra in $life_sprite.get_children():
 		var numero_da_barra = barra.get_index()
-		var x = ((1 + numero_da_barra)*200)
+		var x = ((1 + numero_da_barra)*300)
 		var y = (0)
 		barra.position = Vector2(x,y)
 		if numero_da_barra >= life:

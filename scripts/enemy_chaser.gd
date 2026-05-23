@@ -9,8 +9,12 @@ enum state {IDLE,HUNT,STUN,DEAD}
 @onready var enemy_hitbox: Area2D = $Enemy_hitbox
 @onready var enemy_sprite: Sprite2D = $Enemy_sprite
 @onready var anim: AnimationPlayer = $anim
+@onready var enemy_chaser: CharacterBody2D = $"."
 
 var contador_i_frames=1
+
+func _ready() -> void:
+	enemy_chaser.add_to_group("enemies")
 
 func _physics_process(delta) -> void:
 	#print(current_state)

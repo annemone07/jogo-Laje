@@ -1,21 +1,20 @@
 [gd_scene format=3 uid="uid://ji1qunxm7wlb"]
 
-[ext_resource type="Texture2D" uid="uid://cjggndiour5na" path="res://images/projectile.png" id="1_d2qol"]
 [ext_resource type="Script" uid="uid://da2t48o7goblx" path="res://scripts/enemy_bullet.gd" id="1_qx7rs"]
+[ext_resource type="Texture2D" uid="uid://2ertupio0bse" path="res://images/projectiles/bafo.png" id="2_qx7rs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qx7rs"]
-size = Vector2(56, 52)
+size = Vector2(79, 49.5)
 
 [node name="enemy_bullet" type="Area2D" unique_id=2084612458]
 collision_mask = 6
 script = ExtResource("1_qx7rs")
 
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=768339973]
+scale = Vector2(0.0767516, 0.07675159)
+texture = ExtResource("2_qx7rs")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1131387974]
 shape = SubResource("RectangleShape2D_qx7rs")
-
-[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D" unique_id=768339973]
-position = Vector2(-2.3841858e-07, -1.1368684e-13)
-scale = Vector2(0.74999994, 0.74999994)
-texture = ExtResource("1_d2qol")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

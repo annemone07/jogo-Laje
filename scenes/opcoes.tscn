@@ -14,12 +14,14 @@ offset_left = 128.0
 offset_top = -208.0
 offset_right = 512.0
 offset_bottom = -192.0
+value = 100.0
 
 [node name="musica_vol" type="HSlider" parent="." unique_id=1276786658]
 offset_left = 128.0
 offset_top = -80.0
 offset_right = 512.0
 offset_bottom = -64.0
+value = 100.0
 
 [node name="Resolucoes" type="MenuButton" parent="." unique_id=138991258]
 offset_left = -456.0

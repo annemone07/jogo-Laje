@@ -19,6 +19,9 @@ var direction=1
 var contador_i_frames=0
 var canJump=false
 
+func _ready() -> void:
+	boss.add_to_group("enemies")
+
 func _physics_process(delta: float) -> void:
 	if hp<=0:
 		queue_free()

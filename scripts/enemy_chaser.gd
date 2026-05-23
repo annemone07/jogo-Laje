@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var hp = 10
+var hp = 5
 var speed = 150
 var on_range: bool = false
 var current_state = state.IDLE
@@ -19,6 +19,7 @@ func _ready() -> void:
 func _physics_process(delta) -> void:
 	#print(current_state)
 	if hp <= 0:
+		#enemy_hitbox.queue_free()
 		current_state = state.DEAD
 #isso fica procurando "como" o inimigo tá
 	match current_state:
@@ -41,6 +42,7 @@ func _physics_process(delta) -> void:
 				
 
 	if player.hasAttacked and enemy_hitbox.overlaps_area(player.get_node("areaAtk")) and contador_i_frames==0:
+		player.mana_atual+=1
 		hp-=1
 		contador_i_frames = 1
 		#knockback

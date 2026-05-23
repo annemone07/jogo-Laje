@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://bhknd4ijmfr58" path="res://images/maca.png" id="20_yf3ji"]
 [ext_resource type="Texture2D" uid="uid://dwjryqu3ivncc" path="res://images/tilesetCavernaTest.png" id="21_06m4d"]
 [ext_resource type="Script" uid="uid://dg8w2pwfxeh3r" path="res://scripts/tile_map_layer.gd" id="21_dl550"]
+[ext_resource type="PackedScene" uid="uid://dcsy17k6etlsi" path="res://scenes/hp_restore.tscn" id="22_06m4d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fh0ai"]
 size = Vector2(20, 8.0625)
@@ -270,11 +271,17 @@ tile_map_data = PackedByteArray("AADv/wMAAQACAAIAACDt/+T/AQABAAIAAADt/+X/AQABAAI
 tile_set = SubResource("TileSet_06m4d")
 script = ExtResource("21_dl550")
 
-[node name="Enemy_chaser" parent="." unique_id=1182357391 groups=["enemies"] instance=ExtResource("19_yf3ji")]
+[node name="Enemy_chaser2" parent="." unique_id=1182357391 instance=ExtResource("19_yf3ji")]
+position = Vector2(969, 506)
+
+[node name="Enemy_chaser" parent="." unique_id=314325498 groups=["enemies"] instance=ExtResource("19_yf3ji")]
 position = Vector2(4747, 4496)
 
 [node name="Enemy_shooter" parent="." unique_id=1700318628 instance=ExtResource("20_dl550")]
-position = Vector2(-499, 506)
+position = Vector2(-399, 518)
+
+[node name="Hp_restore" parent="." unique_id=169418490 instance=ExtResource("22_06m4d")]
+position = Vector2(872, 283)
 
 [connection signal="morreu" from="player" to="." method="_on_player_morreu"]
 [connection signal="finished" from="CanvasLayer/Camera2D/musicaFundo" to="." method="_on_musica_fundo_finished"]

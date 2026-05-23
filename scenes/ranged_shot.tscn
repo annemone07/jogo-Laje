@@ -7,17 +7,18 @@
 size = Vector2(21, 47.5)
 
 [node name="rangedShot" type="Area2D" unique_id=733609489]
-rotation = -1.5707964
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_ocokt")
 
 [node name="Maca" type="Sprite2D" parent="." unique_id=93650354]
 position = Vector2(-4.7683716e-07, -9.536743e-07)
+rotation = -1.5707964
 scale = Vector2(0.080541536, 0.080541536)
 texture = ExtResource("2_ocokt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=29772222]
+rotation = -1.5707964
 shape = SubResource("RectangleShape2D_ocokt")
 
 [node name="timerDesaparecer" type="Timer" parent="." unique_id=1441783387]

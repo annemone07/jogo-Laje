@@ -174,7 +174,7 @@ func _on_timer_attack_timeout() -> void:
 
 #player taking dmg if enemy enters their hurtbox
 func _on_hurtbox_body_entered(body: CharacterBody2D) -> void:
-	if body.is_in_group("enemies"): #verifica se corpo é inimigo
+	if body.is_in_group("enemies") and body.hp>0: #verifica se corpo é inimigo
 		if not invulnerable:
 			takeDmg=true
 			timer_i_frames.start()

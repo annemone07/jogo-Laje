@@ -7,8 +7,8 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#master_vol.value = GlobalScript.valor_slider_master
-	#musica_vol.value = GlobalScript.valor_slider_musica
+	master_vol.value = GlobalScript.valor_slider_master
+	musica_vol.value = GlobalScript.valor_slider_musica
 	#GlobalScript.valor_slider_master=master_vol.value
 	#GlobalScript.valor_slider_musica=musica_vol.value
 	resolucoes.get_popup().add_item("1920x1080")
@@ -36,3 +36,10 @@ func _on_musica_vol_value_changed(value: float) -> void:
 
 func _on_voltar_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")
+
+
+func _on_check_button_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)

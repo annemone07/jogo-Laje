@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://4x77qu0v46g4"]
+
+[ext_resource type="Script" uid="uid://d0cin734dgcoo" path="res://scripts/opcoes.gd" id="1_vejpt"]
+
+[node name="Opcoes" type="Node2D" unique_id=1906662328]
+script = ExtResource("1_vejpt")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=750950754]
+
+[node name="Camera2D" type="Camera2D" parent="CanvasLayer" unique_id=1725932709]
+
+[node name="master_vol" type="HSlider" parent="." unique_id=892484803]
+offset_left = 128.0
+offset_top = -208.0
+offset_right = 512.0
+offset_bottom = -192.0
+
+[node name="musica_vol" type="HSlider" parent="." unique_id=1276786658]
+offset_left = 128.0
+offset_top = -80.0
+offset_right = 512.0
+offset_bottom = -64.0
+
+[node name="Resolucoes" type="MenuButton" parent="." unique_id=138991258]
+offset_left = -456.0
+offset_top = -200.0
+offset_right = -448.0
+offset_bottom = -192.0
+text = "Resoluções"
+
+[node name="voltar" type="Button" parent="." unique_id=1109189553]
+offset_left = -456.0
+offset_top = 208.0
+offset_right = -401.0
+offset_bottom = 239.0
+text = "Voltar"
+
+[connection signal="value_changed" from="master_vol" to="." method="_on_master_vol_value_changed"]
+[connection signal="value_changed" from="musica_vol" to="." method="_on_musica_vol_value_changed"]
+[connection signal="pressed" from="voltar" to="." method="_on_voltar_pressed"]

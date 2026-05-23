@@ -26,12 +26,15 @@ const JUMP_VELOCITY = -800.0
 @onready var atk_direita: CollisionShape2D = $areaAtk/atkDireita
 @onready var timer_ranged: Timer = $timerRanged
 @onready var timer_i_frames: Timer = $timer_I_frames
+@onready var personagem: Sprite2D = $Personagem
 @onready var atk_sound: AudioStreamPlayer2D = $atkSound
 @onready var jump_sound: AudioStreamPlayer2D = $jumpSound
 @onready var ranged_atk_sound: AudioStreamPlayer2D = $rangedAtkSound
 @onready var dmg_sound: AudioStreamPlayer2D = $dmgSound
 @onready var run_1_sound: AudioStreamPlayer2D = $run1Sound
 @onready var run_2_sound: AudioStreamPlayer2D = $run2Sound
+@onready var player_animations: AnimationPlayer = $Personagem/player_animations
+
 
 func _ready() -> void:
 	pass
@@ -41,7 +44,12 @@ func _physics_process(delta: float) -> void:
 	GlobalScript.playerPos = global_position
 	#print(canEnter)
 	entrar()
-	
+	if direction == -1.0:
+		personagem.flip_h = true
+
+	if direction == 1.0:
+		personagem.flip_h = false
+		
 	if hp_atual<=0:
 		GlobalScript.salaAtual = get_parent().scene_file_path
 		morreu.emit()
@@ -154,10 +162,13 @@ func _on_loading_animation_finished(anim_name: StringName) -> void: #teleporta j
 
 func attack():
 	if Input.is_action_just_pressed("attackButton") and timer_attack.is_stopped():
+		
+		player_animations.play("bateu")
 		atk_sound.play()
 		timer_attack.start()
 		hasAttacked=true
-
+		await player_animations.animation_finished
+		player_animations.play("idle")
 func ranged():
 	if Input.is_action_just_pressed("rangedAttack") and timer_ranged.is_stopped() && mana_atual > 0:
 		ranged_atk_sound.play()
@@ -166,6 +177,9 @@ func ranged():
 		player.add_sibling(bala)
 		#timer_ranged.start()
 		#hasAttacked=true
+		player_animations.play("atirou")
+		await player_animations.animation_finished
+		player_animations.play("idle")
 		mana_atual -= 1
 		#print ("mana atual:", mana_atual)
 
@@ -178,6 +192,9 @@ func _on_hurtbox_body_entered(body: CharacterBody2D) -> void:
 		if not invulnerable:
 			takeDmg=true
 			timer_i_frames.start()
+			player_animations.play("dano")
+			await player_animations.animation_finished
+			player_animations.play("idle")
 		knockbackDirection = body.position.direction_to(global_position)
 		velocity = knockbackDirection.normalized() * 300 #lança o player na velocidade do knockback
 		velocity.y -= 150
@@ -186,8 +203,7 @@ func _on_timer_i_frames_timeout() -> void:
 	invulnerable=false
 	
 func animacao_ataque():
-	#eventual animação ao atacar, por enquanto mostra qual lado do ataque tá ativo
 	if hasAttacked:
-		area_atk.visible=true
-	else:
-		area_atk.visible=false
+		pass
+		
+		

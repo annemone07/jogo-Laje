@@ -51,7 +51,7 @@ func _physics_process(delta: float) -> void:
 			#print("teste")
 			coyote_timer.start()
 			contadorCoyote+=1
-		velocity += get_gravity() * delta
+		velocity += get_gravity() * delta*1.2
 	else:
 		contadorCoyote=0
 		canJump=true

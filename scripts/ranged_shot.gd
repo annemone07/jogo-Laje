@@ -5,10 +5,15 @@ const SPEED = 500.0
 const JUMP_VELOCITY = -400.0
 var direcao = 1
 var spawnPos
+@onready var maca: Sprite2D = $Maca
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	direcao = GlobalScript.playerDirection
 	global_position = GlobalScript.playerPos
+	if direcao>0:
+		maca.flip_h=false
+	elif direcao<0:
+		maca.flip_h=true
 	pass#ranged_shot.linear_velocity = player.velocity + Vector2(20,20)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

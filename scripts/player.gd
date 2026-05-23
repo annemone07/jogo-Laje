@@ -24,10 +24,18 @@ const JUMP_VELOCITY = -800.0
 @onready var area_atk: Area2D = $areaAtk
 @onready var timer_attack: Timer = $timerAttack
 @onready var atk_direita: CollisionShape2D = $areaAtk/atkDireita
-@onready var atk_esquerda: CollisionShape2D = $areaAtk/atkEsquerda
 @onready var timer_ranged: Timer = $timerRanged
 @onready var timer_i_frames: Timer = $timer_I_frames
+@onready var atk_sound: AudioStreamPlayer2D = $atkSound
+@onready var jump_sound: AudioStreamPlayer2D = $jumpSound
+@onready var ranged_atk_sound: AudioStreamPlayer2D = $rangedAtkSound
+@onready var dmg_sound: AudioStreamPlayer2D = $dmgSound
+@onready var run_1_sound: AudioStreamPlayer2D = $run1Sound
+@onready var run_2_sound: AudioStreamPlayer2D = $run2Sound
 
+func _ready() -> void:
+	pass
+	
 func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("mLeft", "mRight")
 	GlobalScript.playerPos = global_position
@@ -39,11 +47,12 @@ func _physics_process(delta: float) -> void:
 		morreu.emit()
 	
 	if takeDmg and not invulnerable:
-			hp_atual-=1
-			#print ("Esse é um máximoooooo:", max_hp)
-			print(hp_atual)
-			takeDmg=false
-			invulnerable=true
+		dmg_sound.play()
+		hp_atual-=1
+		#print ("Esse é um máximoooooo:", max_hp)
+		print(hp_atual)
+		takeDmg=false
+		invulnerable=true
 	
 	#gravidade
 	if not is_on_floor():
@@ -59,6 +68,7 @@ func _physics_process(delta: float) -> void:
 	#caso não esteja atravessando uma porta/caminho, pode se mover
 	if not loading.is_playing():
 		if Input.is_action_just_pressed("jump") and canJump:
+			jump_sound.play()
 			canJump = false
 			velocity.y = JUMP_VELOCITY
 		# Get the input direction and handle the movement/deceleration.
@@ -87,6 +97,12 @@ func _physics_process(delta: float) -> void:
 					area_atk.rotation_degrees = -90
 				elif upDown>0:
 					area_atk.rotation_degrees = 90
+				else:
+					if GlobalScript.playerDirection>0:
+						area_atk.rotation_degrees = 0
+					elif GlobalScript.playerDirection<0:
+						area_atk.rotation_degrees = -180
+					
 			#print(area_atk.rotation)
 			#if direction>0:
 			#	atk_direita.disabled=false
@@ -100,6 +116,12 @@ func _physics_process(delta: float) -> void:
 		attack()
 		
 		animacao_ataque()
+		
+		#if timer_attack.timeout:
+		#	if direction<0.0:
+		#		area_atk.rotation = -90
+		#	elif direction>0.0:
+		#		area_atk.rotation = 90
 		
 		if not invulnerable: #caso normal
 			if direction: #se andando
@@ -117,7 +139,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_coyote_timer_timeout() -> void: #permite pular por um tempo dps de sair da plataforma (0.5s)
 	canJump = false
-	print("teste2")
+	print("coyote")
 
 func entrar(): #inicia animação de entrar nas portas
 	if canEnter:
@@ -132,16 +154,18 @@ func _on_loading_animation_finished(anim_name: StringName) -> void: #teleporta j
 
 func attack():
 	if Input.is_action_just_pressed("attackButton") and timer_attack.is_stopped():
+		atk_sound.play()
 		timer_attack.start()
 		hasAttacked=true
 
 func ranged():
 	if Input.is_action_just_pressed("rangedAttack") and timer_ranged.is_stopped() && mana_atual > 0:
+		ranged_atk_sound.play()
 		var bala = preload("res://scenes/ranged_shot.tscn").instantiate()
 		#var balaCarregada = bala.instantiate()
 		player.add_sibling(bala)
 		#timer_ranged.start()
-		hasAttacked=true
+		#hasAttacked=true
 		mana_atual -= 1
 		#print ("mana atual:", mana_atual)
 

@@ -12,6 +12,10 @@ const BULLET = preload("res://scenes/enemy_bullet.tscn")
 @onready var enemy_hitbox: Area2D = $Enemy_hitbox
 @onready var enemy_sprite: Sprite2D = $Enemy_collision/Enemy_sprite
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var enemy_shooter: CharacterBody2D = $"."
+
+func _ready() -> void:
+	enemy_shooter.add_to_group("enemies")
 
 func _physics_process(delta) -> void:
 	#print(current_state)

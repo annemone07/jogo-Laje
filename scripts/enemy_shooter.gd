@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var hp = 10
+var hp = 5
 var current_state = state.IDLE
 enum state {IDLE,SHOOT,STUN,DEAD}
 var mirando: bool = false
@@ -41,6 +41,7 @@ func _physics_process(delta) -> void:
 				
 
 	if player.hasAttacked and enemy_hitbox.overlaps_area(player.get_node("areaAtk")) and contador_i_frames==0:
+		player.mana_atual+=1
 		hp-=1
 		contador_i_frames = 1
 		#knockback

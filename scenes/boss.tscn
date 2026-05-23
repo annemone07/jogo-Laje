@@ -27,11 +27,11 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_jncid")
 
 [node name="launchAtkTimer" type="Timer" parent="." unique_id=1881477266]
-wait_time = 2.5
+wait_time = 0.8
 one_shot = true
 
 [node name="canJumpTimer" type="Timer" parent="." unique_id=462177445]
-wait_time = 11.644
+wait_time = 3.0
 one_shot = true
 
 [node name="timerKnockback" type="Timer" parent="." unique_id=660148759]

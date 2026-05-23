@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://bhknd4ijmfr58" path="res://images/maca.png" id="20_yf3ji"]
 [ext_resource type="Texture2D" uid="uid://dwjryqu3ivncc" path="res://images/tilesetCavernaTest.png" id="21_06m4d"]
 [ext_resource type="Script" uid="uid://dg8w2pwfxeh3r" path="res://scripts/tile_map_layer.gd" id="21_dl550"]
+[ext_resource type="PackedScene" uid="uid://dcsy17k6etlsi" path="res://scenes/hp_restore.tscn" id="22_06m4d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fh0ai"]
 size = Vector2(20, 8.0625)

@@ -12,7 +12,7 @@ extends CharacterBody2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 var takeKnockback=false
-var hp = 10
+var hp = 15
 const SPEED = 100.0
 const JUMP_VELOCITY = -400.0
 var direction=1
@@ -33,7 +33,7 @@ func _physics_process(delta: float) -> void:
 	elif can_jump_timer.is_stopped():
 		can_jump_timer.start()
 	
-	if abs(player.global_position.x - global_position.x)<500:
+	if abs(player.global_position.x - global_position.x)<1500:
 		if player.global_position.x - global_position.x<0:
 			direction = -1
 			boss_1_placeholder.flip_h = true
@@ -57,11 +57,12 @@ func _physics_process(delta: float) -> void:
 		if launch_atk_timer.is_stopped():
 			launch_atk_timer.start()
 		if player.hasAttacked and hitbox.overlaps_area(player.get_node("areaAtk")) and contador_i_frames==0:
+			player.mana_atual+=1
 			hp-=1
 			#knockback
 			timer_knockback.start()
 			var knockbackDirection = Vector2(-direction*400,0)
-			var forcaLancamentoBoss = 1500
+			var forcaLancamentoBoss = 1000
 			velocity = knockbackDirection.normalized() * forcaLancamentoBoss #lança o boss na velocidade do knockback
 			velocity.y -= 300
 			contador_i_frames=1

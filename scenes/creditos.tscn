@@ -1,8 +1,12 @@
 [gd_scene format=3 uid="uid://b3kfoslina6lr"]
 
-[ext_resource type="Texture2D" uid="uid://c8n5wy3wusat" path="res://images/black_screen.png" id="1_spoww"]
+[ext_resource type="Texture2D" uid="uid://c4x7by6kdw71i" path="res://images/roxo.png" id="1_jddgq"]
+[ext_resource type="Script" uid="uid://dgmni81dedwso" path="res://scripts/creditos.gd" id="1_lgbdq"]
+[ext_resource type="Texture2D" uid="uid://0bu8phcmjqp1" path="res://images/voltar.png" id="2_lgbdq"]
+[ext_resource type="Texture2D" uid="uid://bhwoq4dfitebd" path="res://images/voltar2.png" id="3_ul0vb"]
 
 [node name="creditos" type="Node2D" unique_id=1174544907]
+script = ExtResource("1_lgbdq")
 
 [node name="Label" type="Label" parent="." unique_id=521167709]
 z_index = 1
@@ -76,8 +80,22 @@ text = "\"Cave Theme\", por HaelDB/Brandon75689. Disponível em: https://opengam
 \"Retro game sound effects\", por Vircon32 (Carra). Disponível em https://opengameart.org/content/retro-game-sound-effects sob licensa
 CC-BY 4.0."
 
-[node name="BlackScreen" type="Sprite2D" parent="." unique_id=153201839]
-position = Vector2(0, -16)
-texture = ExtResource("1_spoww")
+[node name="Roxo" type="Sprite2D" parent="." unique_id=1106038598]
+position = Vector2(8.000008, -8)
+scale = Vector2(1.4375, 1.4375)
+texture = ExtResource("1_jddgq")
+
+[node name="Voltar" type="TextureButton" parent="." unique_id=1141025696]
+z_index = 2
+offset_left = 72.0
+offset_top = 176.0
+offset_right = 520.0
+offset_bottom = 288.0
+texture_normal = ExtResource("2_lgbdq")
+texture_hover = ExtResource("3_ul0vb")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1040804072]
+
+[connection signal="pressed" from="Voltar" to="." method="_on_voltar_pressed"]

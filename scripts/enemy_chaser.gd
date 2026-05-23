@@ -7,8 +7,9 @@ var current_state = state.IDLE
 enum state {IDLE,HUNT,STUN,DEAD}
 @onready var player: Jogador = %player
 @onready var enemy_hitbox: Area2D = $Enemy_hitbox
-@onready var enemy_sprite: Sprite2D = $Enemy_collision/Enemy_sprite
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var enemy_sprite: Sprite2D = $Enemy_sprite
+@onready var anim: AnimationPlayer = $anim
+
 var contador_i_frames=1
 
 func _physics_process(delta) -> void:
@@ -20,16 +21,18 @@ func _physics_process(delta) -> void:
 		state.IDLE:
 			velocity.x = 0
 		state.HUNT:
+			$anim.play("run")
 			hunting()
 		state.DEAD:
-			animation_player.play("morrer")
-			await animation_player.animation_finished 
+			$anim.play("morrer")
+			await $anim.animation_finished 
 			queue_free()
 		state.STUN:
+			$anim.play("idle")
 			if enemy_sprite.flip_h:
-				velocity.x = speed*2
-			else:
 				velocity.x = -speed*2
+			else:
+				velocity.x = speed*2
 				
 				
 
@@ -52,6 +55,8 @@ func _physics_process(delta) -> void:
 	if !player.hasAttacked:
 		contador_i_frames=0
 
+	
+
 	velocity.y += 800*delta
 		
 
@@ -73,14 +78,15 @@ func _on_enemy_range_body_entered(body: Node2D)-> void:
 func hunting():
 	if player.global_position.x > global_position.x:
 		velocity.x = speed
-		enemy_sprite.flip_h = false
+		enemy_sprite.flip_h = true
 	else:
 		velocity.x = -speed
-		enemy_sprite.flip_h = true
-		
+		enemy_sprite.flip_h = false
+	
 #parando
 func _on_enemy_range_body_exited(body: Node2D) -> void:
 	if body == player:
+		$anim.stop()
 		on_range = false
 		current_state = state.IDLE
 		velocity.x = 0

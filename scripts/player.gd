@@ -134,6 +134,11 @@ func _physics_process(delta: float) -> void:
 		
 		animacao_ataque()
 		
+		if Input.is_action_just_pressed("regen") and mana_atual==5:
+			mana_atual-=5
+			hp_atual+=3
+			hp_atual=clamp(hp_atual,0,5)
+		
 		#if timer_attack.timeout:
 		#	if direction<0.0:
 		#		area_atk.rotation = -90

@@ -7,6 +7,7 @@ var mirando: bool = false
 var contador_i_frames=1
 const BULLET = preload("res://scenes/sniper_bullet.tscn")
 
+@onready var knockback: Timer = $knockback
 @onready var colldown = $cooldown
 @onready var player: Jogador = %player
 @onready var enemy_hitbox: Area2D = $Enemy_hitbox
@@ -24,7 +25,8 @@ func _physics_process(delta) -> void:
 #isso fica procurando "como" o inimigo tá
 	match current_state:
 		state.IDLE:
-			velocity.x = 0
+			velocity = Vector2.ZERO
+			move_and_slide()
 		state.SHOOT:
 			shooting()
 		state.DEAD:
@@ -38,6 +40,7 @@ func _physics_process(delta) -> void:
 				
 
 	if player.hasAttacked and enemy_hitbox.overlaps_area(player.get_node("areaAtk")) and contador_i_frames==0:
+		knockback.start()
 		player.mana_atual+=1
 		hp-=1
 		contador_i_frames = 1
@@ -47,8 +50,6 @@ func _physics_process(delta) -> void:
 			velocity.x = -300*2
 		if sprite_2d.flip_h == true:
 			velocity.x = 300*2
-		$cooldown.stop()
-		$spread.stop()
 		await get_tree().create_timer(0.5).timeout
 		$cooldown.start()
 	if !player.hasAttacked:
@@ -59,13 +60,12 @@ func _physics_process(delta) -> void:
 
 
 #detecção
-func _on_enemy_range_body_entered(body: Node2D) -> void:
-	if body == player:
+func _on_enemy_range_body_entered(body: CharacterBody2D) -> void:
+	if body is Jogador:
 		mirando = true
 		$cooldown.start()
 
 func _on_cooldown_timeout() -> void:
-	$cooldown.stop()
 	current_state = state.SHOOT
 	
 
@@ -78,7 +78,7 @@ func shooting():
 	var alvo = get_tree().current_scene.find_child("player", true, false)
 	new_shoot.height = global_position.direction_to(alvo.global_position).y
 	add_sibling(new_shoot)
-	new_shoot.position = self.position
+	new_shoot.global_position = self.global_position
 	if player.global_position.x > global_position.x:
 		sprite_2d.flip_h = false
 		new_shoot.direction = 1
@@ -86,13 +86,18 @@ func shooting():
 		sprite_2d.flip_h = true
 		new_shoot.direction = -1
 	current_state = state.IDLE
-	if mirando == true:
+	if mirando and $spread.is_stopped():
 		$spread.start()
 	
 	
-func _on_enemy_range_body_exited(body: Node2D) -> void:
-	if body == player:
+func _on_enemy_range_body_exited(body: CharacterBody2D) -> void:
+	if body is Jogador:
 		current_state = state.IDLE
-		$cooldown.stop()
-		$spread.stop()
+		#$cooldown.stop()
+		#$spread.stop()
 		
+
+
+func _on_knockback_timeout() -> void:
+	velocity = Vector2.ZERO
+	move_and_slide()

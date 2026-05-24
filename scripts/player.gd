@@ -134,6 +134,7 @@ func _physics_process(delta: float) -> void:
 		
 		animacao_ataque()
 		
+		
 		if Input.is_action_just_pressed("regen") and mana_atual==5:
 			mana_atual-=5
 			hp_atual+=3
@@ -180,7 +181,6 @@ func _on_loading_animation_finished(anim_name: StringName) -> void: #teleporta j
 
 func attack():
 	if Input.is_action_just_pressed("attackButton") and timer_attack.is_stopped():
-		player_animations.play("bateu")
 		atk_sound.play()
 		timer_attack.start()
 		hasAttacked=true
@@ -225,7 +225,8 @@ func _on_timer_i_frames_timeout() -> void:
 	
 func animacao_ataque():
 	if hasAttacked:
-		pass
+		player_animations.stop()
+		player_animations.play("bateu")
 		
 		
 

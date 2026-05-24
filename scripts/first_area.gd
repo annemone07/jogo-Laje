@@ -13,7 +13,7 @@ func _ready() -> void:
 	loading.play("loading2")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	camera_2d.position.x = player.position.x
 	camera_2d.position.y = player.position.y-100
 

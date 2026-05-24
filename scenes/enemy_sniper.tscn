@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://cqoafobxcinkb"]
+
+[ext_resource type="Texture2D" uid="uid://dlpbxnd2jhmwf" path="res://images/flor_1.png" id="1_6ut3t"]
+[ext_resource type="Script" uid="uid://tv8kirmqry3w" path="res://scripts/enemy_sniper.gd" id="1_rwlyv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rwlyv"]
+size = Vector2(96, 112)
+
+[sub_resource type="Animation" id="Animation_rwlyv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_1f7p7"]
+resource_name = "idle"
+length = 1.6
+loop_mode = 1
+step = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.40130788, 0.7998402, 1.2025359),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 0, 2]
+}
+
+[sub_resource type="Animation" id="Animation_4d8dn"]
+resource_name = "shot"
+length = 0.9
+step = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_5uf6s"]
+resource_name = "stun"
+step = 0.3
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1f7p7"]
+_data = {
+&"RESET": SubResource("Animation_rwlyv"),
+&"idle": SubResource("Animation_1f7p7"),
+&"shot": SubResource("Animation_4d8dn"),
+&"stun": SubResource("Animation_5uf6s")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4d8dn"]
+size = Vector2(1552, 410)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5uf6s"]
+size = Vector2(96, 112)
+
+[node name="enemy_sniper" type="CharacterBody2D" unique_id=2145027338 node_paths=PackedStringArray("animation_player")]
+script = ExtResource("1_rwlyv")
+animation_player = NodePath("Sprite2D/AnimationPlayer")
+
+[node name="Enemy_collision" type="CollisionShape2D" parent="." unique_id=1185320947]
+position = Vector2(-5, -8)
+shape = SubResource("RectangleShape2D_rwlyv")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1252654216]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_6ut3t")
+hframes = 3
+vframes = 2
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D" unique_id=1450573605]
+libraries/ = SubResource("AnimationLibrary_1f7p7")
+autoplay = &"idle"
+
+[node name="Enemy_range" type="Area2D" parent="." unique_id=1402176004]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy_range" unique_id=2108904030]
+position = Vector2(3, 67)
+shape = SubResource("RectangleShape2D_4d8dn")
+debug_color = Color(1, 0, 0.10470045, 0.41960785)
+
+[node name="Enemy_hitbox" type="Area2D" parent="." unique_id=1717702474]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy_hitbox" unique_id=1630576182]
+position = Vector2(-5, -8)
+shape = SubResource("RectangleShape2D_5uf6s")
+
+[node name="cooldown" type="Timer" parent="." unique_id=994806386]
+wait_time = 0.75
+
+[node name="spread" type="Timer" parent="." unique_id=591812853]
+wait_time = 2.0
+
+[connection signal="body_entered" from="Enemy_range" to="." method="_on_enemy_range_body_entered"]
+[connection signal="body_exited" from="Enemy_range" to="." method="_on_enemy_range_body_exited"]

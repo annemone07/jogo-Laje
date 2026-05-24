@@ -26,5 +26,5 @@ func _on_area_2d_body_entered(body: CharacterBody2D) -> void:
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area == player.area_atk:
+	if area.name == "areaAtk":
 		queue_free()

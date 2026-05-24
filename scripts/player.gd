@@ -14,6 +14,7 @@ var canJump = true
 var contadorCoyote=0
 const SPEED = 300.0
 const JUMP_VELOCITY = -800.0
+var rangedAtacou=false
 @export var max_mana: int = 5
 @export var max_hp: int = 5
 @onready var mana_atual = max_mana
@@ -34,6 +35,7 @@ const JUMP_VELOCITY = -800.0
 @onready var run_1_sound: AudioStreamPlayer2D = $run1Sound
 @onready var run_2_sound: AudioStreamPlayer2D = $run2Sound
 @onready var player_animations: AnimationPlayer = $Personagem/player_animations
+@onready var hurtbox: Area2D = $hurtbox
 
 
 func _ready() -> void:
@@ -42,6 +44,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("mLeft", "mRight")
 	GlobalScript.playerPos = global_position
+	
+	mana_atual = clamp(mana_atual,0,5)
 	#print(canEnter)
 	entrar()
 	if direction == -1.0:
@@ -52,6 +56,8 @@ func _physics_process(delta: float) -> void:
 		
 	if hp_atual<=0:
 		GlobalScript.salaAtual = get_parent().scene_file_path
+		player_animations.play("dead")
+		#await(player_animations.animation_finished)
 		morreu.emit()
 	
 	if takeDmg and not invulnerable:
@@ -76,6 +82,7 @@ func _physics_process(delta: float) -> void:
 	#caso não esteja atravessando uma porta/caminho, pode se mover
 	if not loading.is_playing():
 		if Input.is_action_just_pressed("jump") and canJump:
+			player_animations.play("jump")
 			jump_sound.play()
 			canJump = false
 			velocity.y = JUMP_VELOCITY
@@ -84,6 +91,8 @@ func _physics_process(delta: float) -> void:
 		
 		if timer_attack.is_stopped():
 			var upDown = Input.get_axis("up", "down")
+			
+			
 			#print(direction)
 			#print(upDown)
 			if direction<0.0:
@@ -133,9 +142,13 @@ func _physics_process(delta: float) -> void:
 		
 		if not invulnerable: #caso normal
 			if direction: #se andando
+				if not hasAttacked and not rangedAtacou and canJump:
+					player_animations.play("run")
 				GlobalScript.playerDirection = direction
 				velocity.x = direction * SPEED
 			else: #se sem andar
+				if not hasAttacked and not rangedAtacou and canJump:
+					player_animations.play("idle")
 				velocity.x = move_toward(velocity.x, 0, SPEED)
 		else: #se em estado de knockback, como foi lançado lá em _on_hurtbox_body_entered, se movimenta até chegar em 0
 			velocity = velocity.move_toward(Vector2.ZERO, delta)
@@ -162,7 +175,6 @@ func _on_loading_animation_finished(anim_name: StringName) -> void: #teleporta j
 
 func attack():
 	if Input.is_action_just_pressed("attackButton") and timer_attack.is_stopped():
-		
 		player_animations.play("bateu")
 		atk_sound.play()
 		timer_attack.start()
@@ -171,6 +183,9 @@ func attack():
 		player_animations.play("idle")
 func ranged():
 	if Input.is_action_just_pressed("rangedAttack") and timer_ranged.is_stopped() && mana_atual > 0:
+		timer_ranged.start()
+		rangedAtacou=true
+		mana_atual -= 1
 		ranged_atk_sound.play()
 		var bala = preload("res://scenes/ranged_shot.tscn").instantiate()
 		#var balaCarregada = bala.instantiate()
@@ -180,7 +195,6 @@ func ranged():
 		player_animations.play("atirou")
 		await player_animations.animation_finished
 		player_animations.play("idle")
-		mana_atual -= 1
 		#print ("mana atual:", mana_atual)
 
 func _on_timer_attack_timeout() -> void:
@@ -188,16 +202,18 @@ func _on_timer_attack_timeout() -> void:
 
 #player taking dmg if enemy enters their hurtbox
 func _on_hurtbox_body_entered(body: CharacterBody2D) -> void:
-	if body.is_in_group("enemies") and body.hp>0: #verifica se corpo é inimigo
+	if body.is_in_group("enemies") and body.hp>0 and is_instance_valid(body): #verifica se corpo é inimigo
 		if not invulnerable:
+			print("foi atacado")
 			takeDmg=true
 			timer_i_frames.start()
 			player_animations.play("dano")
 			await player_animations.animation_finished
-			player_animations.play("idle")
-		knockbackDirection = body.position.direction_to(global_position)
-		velocity = knockbackDirection.normalized() * 300 #lança o player na velocidade do knockback
-		velocity.y -= 150
+			if is_instance_valid(body) and is_instance_valid(player) and is_instance_valid(hurtbox):
+				player_animations.play("idle")
+				knockbackDirection = body.position.direction_to(global_position)
+				velocity = knockbackDirection.normalized() * 300 #lança o player na velocidade do knockback
+				velocity.y -= 150
 
 func _on_timer_i_frames_timeout() -> void:
 	invulnerable=false
@@ -207,3 +223,7 @@ func animacao_ataque():
 		pass
 		
 		
+
+
+func _on_timer_ranged_timeout() -> void:
+	rangedAtacou=false

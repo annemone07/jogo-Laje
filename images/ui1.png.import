@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cns412fqs7gsp"
-path="res://.godot/imported/MACA.png-17306a35d3f8ab4788448bbe8837404a.ctex"
+uid="uid://n1h5kkjwrgxg"
+path="res://.godot/imported/ui1.png-88fc6482941b70e86ea1bfbf1c2d4010.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/MACA.png"
-dest_files=["res://.godot/imported/MACA.png-17306a35d3f8ab4788448bbe8837404a.ctex"]
+source_file="res://images/ui1.png"
+dest_files=["res://.godot/imported/ui1.png-88fc6482941b70e86ea1bfbf1c2d4010.ctex"]
 
 [params]
 

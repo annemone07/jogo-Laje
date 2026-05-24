@@ -27,5 +27,5 @@ func _on_player_morreu() -> void:
 	#proximo_nivel = proximo.instantiate()
 	#get_tree().current_scene.add_child(proximo_nivel)
 
-func _on_musica_fundo_finished() -> void:
-	musica_fundo.play() # Replace with function body.
+#func _on_musica_fundo_finished() -> void:
+	#musica_fundo.play() # Replace with function body.

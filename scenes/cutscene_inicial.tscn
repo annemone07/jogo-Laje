@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dqqtkrgsywbub" path="res://scripts/cutscene_inicial.gd" id="1_332qb"]
 [ext_resource type="Texture2D" uid="uid://chup5n62y3gf8" path="res://images/arvore.png" id="1_bib33"]
-[ext_resource type="Texture2D" uid="uid://bhknd4ijmfr58" path="res://images/maca.png" id="2_332qb"]
+[ext_resource type="Texture2D" uid="uid://c3de4xq6wyqsc" path="res://images/fruta.png" id="3_7krtc"]
 [ext_resource type="Texture2D" uid="uid://c8n5wy3wusat" path="res://images/black_screen.png" id="4_7krtc"]
 [ext_resource type="Texture2D" uid="uid://eqocj22nbbw2" path="res://images/caverna.png" id="4_tobb0"]
 [ext_resource type="PackedScene" uid="uid://codiq4jo2ftrt" path="res://scenes/floor.tscn" id="5_1epil"]
@@ -11,7 +11,7 @@
 size = Vector2(20, 99.41774)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1epil"]
-radius = 10.049875
+radius = 11.0
 
 [sub_resource type="Animation" id="Animation_iwbks"]
 length = 0.001
@@ -101,13 +101,15 @@ position = Vector2(-3, -87)
 collision_mask = 4
 
 [node name="Maca" type="Sprite2D" parent="corpoMaca" unique_id=257990545]
-position = Vector2(-1, 1)
-scale = Vector2(0.57894737, 0.57894737)
-texture = ExtResource("2_332qb")
+position = Vector2(-3, 11)
+scale = Vector2(0.057051808, 0.057051808)
+texture = ExtResource("3_7krtc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="corpoMaca" unique_id=1987272177]
-position = Vector2(-1, 9)
+position = Vector2(-1, 10)
 shape = SubResource("CircleShape2D_1epil")
+
+[node name="Sprite2D" type="Sprite2D" parent="corpoMaca" unique_id=1081044494]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2037322622]
 

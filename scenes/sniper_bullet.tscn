@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://de8r8vq7mbbdx"]
+
+[ext_resource type="Script" uid="uid://d35xl4oheb5uw" path="res://scripts/sniper_bullet.gd" id="1_30l6k"]
+[ext_resource type="Texture2D" uid="uid://un8ld488ec60" path="res://images/projectiles/balaVoador.png" id="1_vthnn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_30l6k"]
+size = Vector2(56, 46)
+
+[node name="sniper_bullet" type="Area2D" unique_id=1855809438]
+script = ExtResource("1_30l6k")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=912115037]
+position = Vector2(-9.536743e-07, 4.7683716e-07)
+scale = Vector2(0.085904256, 0.07515723)
+texture = ExtResource("1_vthnn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=657917461]
+shape = SubResource("RectangleShape2D_30l6k")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

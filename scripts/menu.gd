@@ -22,3 +22,7 @@ func _on_opcoes_pressed() -> void:
 
 func _on_creditos_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/creditos.tscn")
+
+
+func _on_tutorial_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/tutorial.tscn")

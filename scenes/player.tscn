@@ -5,10 +5,10 @@
 [ext_resource type="Script" uid="uid://dh17ifvwokvjp" path="res://scripts/player_hud.gd" id="3_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://n1h5kkjwrgxg" path="res://images/ui1.png" id="4_jej6c"]
 [ext_resource type="Texture2D" uid="uid://drk54nkfucet4" path="res://images/ui3.png" id="5_f1ej7"]
-[ext_resource type="Texture2D" uid="uid://d1w6an6np6pqe" path="res://images/coracao.png" id="5_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://ccmqotjcl365x" path="res://images/ui2.png" id="6_oprun"]
-[ext_resource type="Texture2D" uid="uid://dhaiwhbcg3sxc" path="res://images/mana.png" id="6_tuyoq"]
+[ext_resource type="Texture2D" uid="uid://d1dy82npdjy2h" path="res://images/vida2.png" id="7_jej6c"]
 [ext_resource type="AudioStream" uid="uid://b6qayymfg7quk" path="res://sounds/retro_game_sound_effects_-_all_sounds/SoundFlapLight.wav" id="7_y4r1p"]
+[ext_resource type="Texture2D" uid="uid://cdhyxbl76d84m" path="res://images/mana2.png" id="8_f1ej7"]
 [ext_resource type="AudioStream" uid="uid://bcd6ipb7peh0d" path="res://sounds/retro_game_sound_effects_-_all_sounds/SoundJump1.wav" id="8_ur7pv"]
 [ext_resource type="AudioStream" uid="uid://6wak4nb8wv01" path="res://sounds/retro_game_sound_effects_-_all_sounds/SoundSpecialSkill.wav" id="9_d2wvv"]
 [ext_resource type="AudioStream" uid="uid://c1guuekphdykm" path="res://sounds/retro_game_sound_effects_-_all_sounds/SoundPlayerHit.wav" id="10_3v2ag"]
@@ -319,14 +319,14 @@ libraries/ = SubResource("AnimationLibrary_ur7pv")
 autoplay = &"normal"
 
 [node name="life_sprite" type="Sprite2D" parent="player_hud" unique_id=428022211]
-position = Vector2(135, 49)
-scale = Vector2(0.15, 0.15)
-texture = ExtResource("5_tuyoq")
+position = Vector2(152, 33)
+scale = Vector2(0.020853538, 0.02085354)
+texture = ExtResource("7_jej6c")
 
 [node name="mana_sprite" type="Sprite2D" parent="player_hud" unique_id=724622249]
-position = Vector2(152, 104)
-scale = Vector2(0.5000001, 0.5)
-texture = ExtResource("6_tuyoq")
+position = Vector2(152.25, 90.81734)
+scale = Vector2(0.024771526, 0.02543057)
+texture = ExtResource("8_f1ej7")
 
 [node name="atkSound" type="AudioStreamPlayer2D" parent="." unique_id=826390094]
 stream = ExtResource("7_y4r1p")

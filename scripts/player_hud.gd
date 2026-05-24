@@ -49,7 +49,7 @@ func hp_check():
 		life = max_life
 	for barra in $life_sprite.get_children():
 		var numero_da_barra = barra.get_index()
-		var x = ((1 + numero_da_barra)*300)
+		var x = ((numero_da_barra)*2000)
 		var y = (0)
 		barra.position = Vector2(x,y)
 		if numero_da_barra >= life:
@@ -71,7 +71,7 @@ func mana_check():
 		mana = max_mana
 	for magia in $mana_sprite.get_children():
 		var barra_de_mana = magia.get_index()
-		var x = ((1 + barra_de_mana)*60)
+		var x = ((barra_de_mana)*1600)
 		var y = (0)
 		magia.position = Vector2(x,y)
 		if barra_de_mana >= mana:

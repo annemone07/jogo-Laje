@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c873fxl18txli"]
 
 [ext_resource type="Script" uid="uid://bdmqssbc1aqd3" path="res://scripts/enemy_chaser.gd" id="1_x7y0m"]
-[ext_resource type="Texture2D" uid="uid://macvdvuuffdi" path="res://images/COGUMELO.png" id="2_x7y0m"]
+[ext_resource type="Texture2D" uid="uid://eufss0qxpl4" path="res://images/cogumelo.png" id="2_x7y0m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ddd7"]
 size = Vector2(82, 136)
@@ -22,6 +22,34 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Enemy_sprite:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4ifjj"]
+resource_name = "atk"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Enemy_sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_wuvmb"]
@@ -77,6 +105,7 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4ifjj"]
 _data = {
 &"RESET": SubResource("Animation_x7y0m"),
+&"atk": SubResource("Animation_4ifjj"),
 &"idle": SubResource("Animation_wuvmb"),
 &"morrer": SubResource("Animation_3ddd7"),
 &"run": SubResource("Animation_xdwg6")
@@ -97,6 +126,7 @@ scale = Vector2(0.0954915, 0.09037777)
 texture = ExtResource("2_x7y0m")
 hframes = 3
 vframes = 2
+frame = 4
 
 [node name="Enemy_range" type="Area2D" parent="." unique_id=1053003867]
 collision_mask = 2
@@ -120,3 +150,4 @@ libraries/ = SubResource("AnimationLibrary_4ifjj")
 [connection signal="area_entered" from="Enemy_range" to="." method="_on_enemy_range_area_entered"]
 [connection signal="body_entered" from="Enemy_range" to="." method="_on_enemy_range_body_entered"]
 [connection signal="body_exited" from="Enemy_range" to="." method="_on_enemy_range_body_exited"]
+[connection signal="body_entered" from="Enemy_hitbox" to="." method="_on_enemy_hitbox_body_entered"]

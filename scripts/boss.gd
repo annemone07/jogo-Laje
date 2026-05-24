@@ -24,7 +24,10 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if hp<=0:
-		queue_free()
+		boss.visible=false
+		await get_tree().create_timer(1.5).timeout
+		get_tree().change_scene_to_file("res://scenes/creditos.tscn")
+		#queue_free()
 	
 	# Add the gravity.
 	#print(hp)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://eufss0qxpl4"
-path="res://.godot/imported/cogumelo.png-56cb1e7cc7d7427a5ab26d7e1be93333.ctex"
+uid="uid://buxt5u7rcgff2"
+path="res://.godot/imported/fundo_4.png-70b8ecfc221e75c2712eef529774b0d7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/cogumelo.png"
-dest_files=["res://.godot/imported/cogumelo.png-56cb1e7cc7d7427a5ab26d7e1be93333.ctex"]
+source_file="res://images/fundo_4.png"
+dest_files=["res://.godot/imported/fundo_4.png-70b8ecfc221e75c2712eef529774b0d7.ctex"]
 
 [params]
 

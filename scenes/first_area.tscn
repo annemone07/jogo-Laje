@@ -24,6 +24,8 @@
 [ext_resource type="Script" uid="uid://dg8w2pwfxeh3r" path="res://scripts/tile_map_layer.gd" id="21_dl550"]
 [ext_resource type="PackedScene" uid="uid://bbpky25mh6x5c" path="res://scenes/enemy_fly.tscn" id="22_06m4d"]
 [ext_resource type="PackedScene" uid="uid://cqoafobxcinkb" path="res://scenes/enemy_sniper.tscn" id="23_2j24t"]
+[ext_resource type="Texture2D" uid="uid://buxt5u7rcgff2" path="res://images/fundo_4.png" id="25_4yq2j"]
+[ext_resource type="Texture2D" uid="uid://ljfcww3gnt2f" path="res://images/fundo_3.png" id="25_c3cbg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fh0ai"]
 size = Vector2(20, 8.0625)
@@ -86,9 +88,6 @@ _data = {
 &"loading1": SubResource("Animation_k1hnx"),
 &"loading2": SubResource("Animation_k8fe5")
 }
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uvkhp"]
-size = Vector2(20, 176)
 
 [sub_resource type="Animation" id="Animation_2j24t"]
 length = 0.001
@@ -232,7 +231,7 @@ script = ExtResource("1_fh0ai")
 
 [node name="player" parent="." unique_id=856049245 instance=ExtResource("6_j6tfh")]
 unique_name_in_owner = true
-position = Vector2(24450, 1030)
+position = Vector2(-253, 483)
 
 [node name="entradas" type="Node" parent="." unique_id=508396198]
 script = ExtResource("3_iwbks")
@@ -404,6 +403,162 @@ position = Vector2(-517, 80)
 [node name="enemy_sniper" parent="." unique_id=2145027338 instance=ExtResource("23_2j24t")]
 position = Vector2(763, 288)
 
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1180363756]
+z_index = -10
+scroll_scale = Vector2(0.7, 0.7)
+
+[node name="Fundo4" type="Sprite2D" parent="Parallax2D" unique_id=2033523038]
+z_index = 2
+position = Vector2(3661, 1542)
+texture = ExtResource("25_4yq2j")
+
+[node name="Fundo7" type="Sprite2D" parent="Parallax2D" unique_id=784157553]
+position = Vector2(-1206, 4103)
+texture = ExtResource("25_4yq2j")
+
+[node name="Fundo3" type="Sprite2D" parent="Parallax2D" unique_id=1629986930]
+position = Vector2(411, 1301)
+scale = Vector2(0.9101695, 0.9101695)
+texture = ExtResource("25_c3cbg")
+
+[node name="Fundo8" type="Sprite2D" parent="Parallax2D" unique_id=799823841]
+z_index = -3
+position = Vector2(1715, 5106)
+scale = Vector2(0.6545198, 0.6545198)
+texture = ExtResource("25_c3cbg")
+
+[node name="Fundo9" type="Sprite2D" parent="Parallax2D" unique_id=1125881455]
+z_index = -3
+position = Vector2(1715, 5106)
+scale = Vector2(0.6545198, 0.6545198)
+texture = ExtResource("25_c3cbg")
+
+[node name="Fundo5" type="Sprite2D" parent="Parallax2D" unique_id=1483352865]
+z_index = 1
+position = Vector2(1832, 3494.9998)
+rotation = 1.5707964
+scale = Vector2(0.80359745, 0.7359826)
+texture = ExtResource("25_c3cbg")
+
+[node name="Fundo6" type="Sprite2D" parent="Parallax2D" unique_id=740397478]
+position = Vector2(4423, 3495)
+rotation = -1.5707964
+scale = Vector2(0.80359745, 0.7359826)
+texture = ExtResource("25_c3cbg")
+
+[node name="Fundo10" type="Sprite2D" parent="Parallax2D" unique_id=1728694579]
+position = Vector2(7028, 3417)
+rotation = -1.5707964
+scale = Vector2(0.80359745, 0.7359826)
+texture = ExtResource("25_c3cbg")
+
+[node name="Fundo12" type="Sprite2D" parent="Parallax2D" unique_id=1535250081]
+z_index = -1
+position = Vector2(9313, 255)
+texture = ExtResource("25_4yq2j")
+
+[node name="Fundo16" type="Sprite2D" parent="Parallax2D" unique_id=1333401477]
+z_index = -3
+position = Vector2(11296, -555)
+texture = ExtResource("25_4yq2j")
+
+[node name="Fundo13" type="Sprite2D" parent="Parallax2D" unique_id=110821810]
+position = Vector2(15698, -4417)
+scale = Vector2(1.2734463, 1.2734463)
+texture = ExtResource("25_4yq2j")
+
+[node name="Fundo11" type="Sprite2D" parent="Parallax2D" unique_id=586753564]
+position = Vector2(9634, 3401)
+rotation = -1.5707964
+scale = Vector2(0.80359745, 0.7359826)
+texture = ExtResource("25_c3cbg")
+
+[node name="Fundo14" type="Sprite2D" parent="Parallax2D" unique_id=1506917495]
+position = Vector2(12797, -1093)
+texture = ExtResource("25_c3cbg")
+
+[node name="Fundo15" type="Sprite2D" parent="Parallax2D" unique_id=608167392]
+position = Vector2(12797, -1093)
+texture = ExtResource("25_c3cbg")
+
+[node name="Fundo29" type="Sprite2D" parent="Parallax2D" unique_id=174055681]
+position = Vector2(20267.002, -4426)
+scale = Vector2(1.3081924, 1.269811)
+texture = ExtResource("25_c3cbg")
+
+[node name="Fundo18" type="Sprite2D" parent="Parallax2D" unique_id=1808070531]
+z_index = -1
+position = Vector2(9374, -2612)
+rotation = 1.5707964
+texture = ExtResource("25_c3cbg")
+
+[node name="Fundo20" type="Sprite2D" parent="Parallax2D" unique_id=801287774]
+position = Vector2(9184, 6582)
+texture = ExtResource("25_c3cbg")
+
+[node name="Fundo23" type="Sprite2D" parent="Parallax2D" unique_id=1757393743]
+position = Vector2(15862.5, 6585)
+scale = Vector2(1.0257062, 1)
+texture = ExtResource("25_c3cbg")
+flip_h = true
+
+[node name="Fundo24" type="Sprite2D" parent="Parallax2D" unique_id=1250334225]
+position = Vector2(15792.999, 2843)
+scale = Vector2(1.1616521, 1.1611605)
+texture = ExtResource("25_c3cbg")
+flip_h = true
+
+[node name="Fundo26" type="Sprite2D" parent="Parallax2D" unique_id=283604290]
+position = Vector2(23540, 2016)
+scale = Vector2(1.0004234, 1)
+texture = ExtResource("25_c3cbg")
+flip_h = true
+
+[node name="Fundo21" type="Sprite2D" parent="Parallax2D" unique_id=1136067052]
+position = Vector2(5651, 6591)
+rotation = 1.5707964
+texture = ExtResource("25_4yq2j")
+
+[node name="Fundo22" type="Sprite2D" parent="Parallax2D" unique_id=1462028435]
+position = Vector2(14223, 5316)
+scale = Vector2(2.0652542, 1.7133819)
+texture = ExtResource("25_4yq2j")
+
+[node name="Fundo25" type="Sprite2D" parent="Parallax2D" unique_id=872118083]
+z_index = -1
+position = Vector2(19849, 2016)
+scale = Vector2(1.2053672, 1)
+texture = ExtResource("25_4yq2j")
+
+[node name="Fundo28" type="Sprite2D" parent="Parallax2D" unique_id=973242090]
+z_index = -1
+position = Vector2(25279, -4416)
+scale = Vector2(1.5235877, 1.2640029)
+texture = ExtResource("25_4yq2j")
+
+[node name="Fundo27" type="Sprite2D" parent="Parallax2D" unique_id=299233747]
+z_index = -1
+position = Vector2(25711, -1083)
+scale = Vector2(1.9896888, 1.6506909)
+texture = ExtResource("25_4yq2j")
+
+[node name="Fundo19" type="Sprite2D" parent="Parallax2D" unique_id=902575087]
+z_index = -3
+position = Vector2(12572.24, -3330.24)
+rotation = 1.5707964
+scale = Vector2(1.3752768, 1.3752768)
+texture = ExtResource("25_c3cbg")
+
+[node name="Fundo17" type="Sprite2D" parent="Parallax2D" unique_id=509532773]
+z_index = -2
+position = Vector2(7973, -2508)
+texture = ExtResource("25_c3cbg")
+
+[node name="timerCreditos" type="Timer" parent="." unique_id=536202960]
+wait_time = 2.5
+one_shot = true
+
 [connection signal="morreu" from="player" to="." method="_on_player_morreu"]
 [connection signal="animation_finished" from="CanvasLayer/loading" to="player" method="_on_loading_animation_finished"]
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="timeout" from="timerCreditos" to="." method="_on_timer_creditos_timeout"]

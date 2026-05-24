@@ -29,3 +29,7 @@ func _on_player_morreu() -> void:
 
 #func _on_musica_fundo_finished() -> void:
 	#musica_fundo.play() # Replace with function body.
+
+
+func _on_timer_creditos_timeout() -> void:
+	get_tree().change_scene_to_file("res://scenes/creditos.tscn")

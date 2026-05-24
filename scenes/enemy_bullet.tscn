@@ -6,6 +6,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qx7rs"]
 size = Vector2(79, 49.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_38r62"]
+size = Vector2(84, 54)
+
 [node name="enemy_bullet" type="Area2D" unique_id=2084612458]
 collision_mask = 6
 script = ExtResource("1_qx7rs")
@@ -17,4 +20,11 @@ texture = ExtResource("2_qx7rs")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1131387974]
 shape = SubResource("RectangleShape2D_qx7rs")
 
+[node name="Area2D" type="Area2D" parent="." unique_id=1950660049]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=845433090]
+shape = SubResource("RectangleShape2D_38r62")
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

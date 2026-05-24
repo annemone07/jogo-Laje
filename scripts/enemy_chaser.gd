@@ -97,3 +97,8 @@ func _on_enemy_range_body_exited(body: Node2D) -> void:
 		on_range = false
 		current_state = state.IDLE
 		velocity.x = 0
+
+
+func _on_enemy_hitbox_body_entered(body: CharacterBody2D) -> void:
+	if body is Jogador:
+		anim.play("atk")

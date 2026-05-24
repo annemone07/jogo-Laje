@@ -50,7 +50,7 @@ func _physics_process(_delta: float) -> void:
 		if sprite_2d.flip_h == true:
 			velocity.x = speed*1.1
 			
-		await get_tree().create_timer(0.1).timeout
+		await get_tree().create_timer(.5).timeout
 		if on_range == true:
 			current_state = state.HUNT
 		if on_range == false:
@@ -65,9 +65,6 @@ func _on_enemy_range_body_entered(body: Node2D) -> void:
 		on_range = true
 		current_state = state.HUNT
 
-	else:
-		on_range = false
-		current_state = state.IDLE
 #correndo
 
 func hunting():
@@ -82,6 +79,9 @@ func hunting():
 
 func _on_enemy_range_body_exited(body: Node2D) -> void:
 	if body == player:
+		on_range = false
 		await get_tree().create_timer(1.5).timeout
-		animation_player.play("idle")
-		current_state = state.IDLE
+		
+		if not on_range and current_state != state.STUN:
+			animation_player.play("idle")
+			current_state = state.IDLE

@@ -4,7 +4,7 @@ var hp = 5
 var speed = 150
 var on_range: bool = false
 var current_state = state.IDLE
-enum state {IDLE,HUNT,STUN,DEAD}
+enum state {IDLE,HUNT,STUN,DEAD, ATK}
 @onready var player: Jogador = %player
 @onready var enemy_hitbox: Area2D = $Enemy_hitbox
 @onready var enemy_sprite: Sprite2D = $Enemy_sprite
@@ -32,6 +32,8 @@ func _physics_process(delta) -> void:
 			$anim.play("morrer")
 			await $anim.animation_finished 
 			queue_free()
+		state.ATK:
+			$anim.play("atk")
 		state.STUN:
 			$anim.play("idle")
 			if enemy_sprite.flip_h:
@@ -94,6 +96,7 @@ func hunting():
 func _on_enemy_range_body_exited(body: Node2D) -> void:
 	if body == player:
 		$anim.stop()
+		$anim.play("idle")
 		on_range = false
 		current_state = state.IDLE
 		velocity.x = 0
@@ -101,4 +104,7 @@ func _on_enemy_range_body_exited(body: Node2D) -> void:
 
 func _on_enemy_hitbox_body_entered(body: CharacterBody2D) -> void:
 	if body is Jogador:
-		anim.play("atk")
+		current_state = state.ATK
+		velocity.x = 0
+	await $anim.animation_finished
+	current_state = state.HUNT

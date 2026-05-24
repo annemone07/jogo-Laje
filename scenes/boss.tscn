@@ -1,34 +1,97 @@
 [gd_scene format=3 uid="uid://cwvy52ab8q7d8"]
 
-[ext_resource type="Texture2D" uid="uid://4mool6m6vwle" path="res://images/boss1_placeholder.png" id="1_dlmty"]
 [ext_resource type="Script" uid="uid://dnerdyp2c3osm" path="res://scripts/boss.gd" id="1_neq0i"]
+[ext_resource type="Texture2D" uid="uid://dg7vman28lhtd" path="res://images/nighshade.png" id="3_jncid"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qnbj4"]
+atlas = ExtResource("3_jncid")
+region = Rect2(0, 1770, 1672, 1770)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3bxh"]
+atlas = ExtResource("3_jncid")
+region = Rect2(1672, 1770, 1672, 1770)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqpjq"]
+atlas = ExtResource("3_jncid")
+region = Rect2(3344, 1770, 1672, 1770)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cdgk"]
+atlas = ExtResource("3_jncid")
+region = Rect2(0, 0, 1672, 1770)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsl3t"]
+atlas = ExtResource("3_jncid")
+region = Rect2(1672, 0, 1672, 1770)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2avx2"]
+atlas = ExtResource("3_jncid")
+region = Rect2(0, 1770, 1672, 1770)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5f346"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qnbj4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r3bxh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wqpjq")
+}],
+"loop": true,
+"name": &"andar",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2cdgk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsl3t")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2avx2")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_neq0i"]
-size = Vector2(344, 284)
+size = Vector2(171, 284)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jncid"]
-size = Vector2(348, 288)
+size = Vector2(185, 288)
 
 [node name="boss" type="CharacterBody2D" unique_id=1621797502]
 collision_mask = 4
 script = ExtResource("1_neq0i")
 
-[node name="Boss1Placeholder" type="Sprite2D" parent="." unique_id=22765467]
-scale = Vector2(0.6, 0.603)
-texture = ExtResource("1_dlmty")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1647680364]
+position = Vector2(5.5, -5.851486)
+scale = Vector2(0.16925839, 0.17010467)
+sprite_frames = SubResource("SpriteFrames_5f346")
+animation = &"attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1901060384]
+position = Vector2(6.5, 0)
 shape = SubResource("RectangleShape2D_neq0i")
 
 [node name="hitbox" type="Area2D" parent="." unique_id=1014607121]
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" unique_id=744908922]
+position = Vector2(6.5, 0)
 shape = SubResource("RectangleShape2D_jncid")
 
 [node name="launchAtkTimer" type="Timer" parent="." unique_id=1881477266]
-wait_time = 0.8
-one_shot = true
+autostart = true
 
 [node name="canJumpTimer" type="Timer" parent="." unique_id=462177445]
 wait_time = 3.0

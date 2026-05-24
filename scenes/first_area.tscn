@@ -1,13 +1,7 @@
 [gd_scene format=4 uid="uid://dkmerpadix720"]
 
 [ext_resource type="Script" uid="uid://duhvgt0r8ph1p" path="res://scripts/first_area.gd" id="1_fh0ai"]
-[ext_resource type="Texture2D" uid="uid://chup5n62y3gf8" path="res://images/arvore.png" id="1_urf0j"]
-[ext_resource type="PackedScene" uid="uid://codiq4jo2ftrt" path="res://scenes/floor.tscn" id="2_o6oav"]
 [ext_resource type="Script" uid="uid://bxnh2dqa3xis5" path="res://scripts/entradas.gd" id="3_iwbks"]
-[ext_resource type="Texture2D" uid="uid://eqocj22nbbw2" path="res://images/caverna.png" id="3_j6tfh"]
-[ext_resource type="Texture2D" uid="uid://cbgkyxw8ovclf" path="res://images/cave_central.png" id="4_fh0ai"]
-[ext_resource type="PackedScene" uid="uid://d3g8re3eljrv8" path="res://scenes/entrada.tscn" id="4_o6oav"]
-[ext_resource type="Texture2D" uid="uid://bp1j5c7b35vhg" path="res://images/enterArrow.png" id="6_4q1ry"]
 [ext_resource type="PackedScene" uid="uid://cc26gg5huh236" path="res://scenes/player.tscn" id="6_j6tfh"]
 [ext_resource type="Texture2D" uid="uid://c8n5wy3wusat" path="res://images/black_screen.png" id="10_k1hnx"]
 [ext_resource type="Script" uid="uid://dmal5hi7hulil" path="res://scripts/organização_ui.gd" id="11_u5t67"]
@@ -27,15 +21,6 @@
 [ext_resource type="Texture2D" uid="uid://buxt5u7rcgff2" path="res://images/fundo_4.png" id="25_4yq2j"]
 [ext_resource type="Texture2D" uid="uid://ljfcww3gnt2f" path="res://images/fundo_3.png" id="25_c3cbg"]
 [ext_resource type="PackedScene" uid="uid://dcsy17k6etlsi" path="res://scenes/hp_restore.tscn" id="27_0sgo7"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fh0ai"]
-size = Vector2(20, 8.0625)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4q1ry"]
-size = Vector2(22.833328, 4.9375)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_k1hnx"]
-size = Vector2(1052, 24)
 
 [sub_resource type="Animation" id="Animation_iwbks"]
 length = 0.001
@@ -232,76 +217,10 @@ script = ExtResource("1_fh0ai")
 
 [node name="player" parent="." unique_id=856049245 instance=ExtResource("6_j6tfh")]
 unique_name_in_owner = true
-position = Vector2(-453, 432)
+position = Vector2(-837, 490)
 
 [node name="entradas" type="Node" parent="." unique_id=508396198]
 script = ExtResource("3_iwbks")
-
-[node name="entrada01" parent="entradas" unique_id=251451387 instance=ExtResource("4_o6oav")]
-position = Vector2(546, 208)
-scale = Vector2(12, 8)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="entradas/entrada01" unique_id=410557159]
-position = Vector2(-0.08333206, 5.90625)
-shape = SubResource("RectangleShape2D_fh0ai")
-
-[node name="EnterArrow" type="Sprite2D" parent="entradas/entrada01" unique_id=1397858052]
-visible = false
-position = Vector2(0.08333588, -16.25)
-scale = Vector2(0.035460994, 0.05319149)
-texture = ExtResource("6_4q1ry")
-
-[node name="posSaida" type="Node2D" parent="entradas/entrada01" unique_id=1074138018]
-position = Vector2(139.66667, -2.5)
-
-[node name="entrada10" parent="entradas" unique_id=1027853176 instance=ExtResource("4_o6oav")]
-z_index = 2
-position = Vector2(2419, 211)
-scale = Vector2(12, 8)
-
-[node name="EnterArrow" type="Sprite2D" parent="entradas/entrada10" unique_id=1119859036]
-visible = false
-position = Vector2(0.08333588, -16.25)
-scale = Vector2(0.035460994, 0.05319149)
-texture = ExtResource("6_4q1ry")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="entradas/entrada10" unique_id=2044516303]
-position = Vector2(1.5258789e-05, 7.09375)
-shape = SubResource("RectangleShape2D_4q1ry")
-
-[node name="posSaida" type="Node2D" parent="entradas/entrada10" unique_id=433584098]
-position = Vector2(-173.08333, -0.625)
-
-[node name="Arvore" type="Sprite2D" parent="." unique_id=1235052074]
-position = Vector2(-4, -426)
-texture = ExtResource("1_urf0j")
-
-[node name="Caverna" type="Sprite2D" parent="." unique_id=354149138]
-z_index = -1
-position = Vector2(-229, 352)
-texture = ExtResource("3_j6tfh")
-
-[node name="CaveCentral" type="Sprite2D" parent="." unique_id=156120402]
-z_index = -12
-position = Vector2(2028.0001, 81.99994)
-scale = Vector2(1.35559, 1.35559)
-texture = ExtResource("4_fh0ai")
-
-[node name="floor" parent="CaveCentral" unique_id=468646482 instance=ExtResource("2_o6oav")]
-position = Vector2(-131.30823, 163.76639)
-scale = Vector2(0.7376862, 0.7376862)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CaveCentral/floor" unique_id=1143812090]
-position = Vector2(177, -2)
-shape = SubResource("RectangleShape2D_k1hnx")
-
-[node name="floor2" parent="CaveCentral" unique_id=365622294 instance=ExtResource("2_o6oav")]
-position = Vector2(358.5154, 4.5776367e-05)
-scale = Vector2(0.7376862, 0.7376862)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CaveCentral/floor2" unique_id=761500521]
-position = Vector2(177, -2)
-shape = SubResource("RectangleShape2D_k1hnx")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1813336631]
 

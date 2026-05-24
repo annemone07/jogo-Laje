@@ -5,11 +5,11 @@ extends CharacterBody2D
 @onready var boss: CharacterBody2D = $"."
 @onready var player: Jogador = %player
 @onready var hitbox: Area2D = $hitbox
-@onready var boss_1_placeholder: Sprite2D = $Boss1Placeholder
 @onready var launch_atk_timer: Timer = $launchAtkTimer
 @onready var can_jump_timer: Timer = $canJumpTimer
 @onready var timer_knockback: Timer = $timerKnockback
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 var takeKnockback=false
 var hp = 15
@@ -36,13 +36,13 @@ func _physics_process(delta: float) -> void:
 	elif can_jump_timer.is_stopped():
 		can_jump_timer.start()
 	
-	if abs(player.global_position.x - global_position.x)<1500:
+	if abs(player.global_position.x - global_position.x)<1000:
 		if player.global_position.x - global_position.x<0:
 			direction = -1
-			boss_1_placeholder.flip_h = true
+			animated_sprite_2d.flip_h = true
 		elif player.global_position.x - global_position.x>0:
 			direction = 1
-			boss_1_placeholder.flip_h = false
+			animated_sprite_2d.flip_h = false
 	else:
 		direction = 0
 
@@ -57,8 +57,6 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	
 	if direction and not takeKnockback: #decidir se vai implementar knockback no boss
-		if launch_atk_timer.is_stopped():
-			launch_atk_timer.start()
 		if player.hasAttacked and hitbox.overlaps_area(player.get_node("areaAtk")) and contador_i_frames==0:
 			player.mana_atual+=1
 			hp-=1
@@ -74,17 +72,22 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity.x = direction * SPEED
 	else:
+		animated_sprite_2d.play("idle")
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
 
 func _on_launch_atk_timer_timeout() -> void:
 	#print("bala")
+	animated_sprite_2d.play("attack")
 	var bala = preload("res://scenes/boss_shot.tscn").instantiate()
 	var AlturaAteTopoBoss=160
 	bala.global_position = global_position + Vector2(0,-AlturaAteTopoBoss)
 	#var balaCarregada = bala.instantiate()
 	boss.add_sibling(bala)
+	await get_tree().create_timer(0.4).timeout
+	if direction:
+		animated_sprite_2d.play("andar")
 
 
 func _on_timer_knockback_timeout() -> void:

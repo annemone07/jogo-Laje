@@ -9,6 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://c01abfyyncaa7" path="res://images/sairHover.png" id="6_mj5lg"]
 [ext_resource type="Texture2D" uid="uid://oi2np21mv2yq" path="res://images/creditos3.png" id="8_i6lef"]
 [ext_resource type="Texture2D" uid="uid://dxqeswasvifng" path="res://images/creditos4.png" id="9_70i5f"]
+[ext_resource type="Texture2D" uid="uid://ljfcww3gnt2f" path="res://images/fundo_3.png" id="10_70i5f"]
+[ext_resource type="Texture2D" uid="uid://c4rdx52jhsl27" path="res://images/tutorial.png" id="10_ufwb2"]
+[ext_resource type="Texture2D" uid="uid://dgkbif0xm2ynw" path="res://images/tutorial2.png" id="11_6cdou"]
 
 [node name="Menu" type="Node2D" unique_id=457965247]
 script = ExtResource("1_v86rl")
@@ -57,9 +60,26 @@ texture_hover = ExtResource("9_70i5f")
 ignore_texture_size = true
 stretch_mode = 0
 
+[node name="tutorial" type="TextureButton" parent="." unique_id=595342609]
+offset_left = 88.0
+offset_top = -64.0
+offset_right = 536.0
+offset_bottom = 48.0
+texture_normal = ExtResource("10_ufwb2")
+texture_hover = ExtResource("11_6cdou")
+ignore_texture_size = true
+stretch_mode = 0
+
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=155754104]
+
+[node name="Fundo3" type="Sprite2D" parent="." unique_id=1816562784]
+z_index = -6
+position = Vector2(-208.00006, 376.00006)
+scale = Vector2(0.46836156, 0.46836156)
+texture = ExtResource("10_70i5f")
 
 [connection signal="pressed" from="iniciar" to="." method="_on_iniciar_pressed"]
 [connection signal="pressed" from="opcoes" to="." method="_on_opcoes_pressed"]
 [connection signal="pressed" from="sair" to="." method="_on_sair_pressed"]
 [connection signal="pressed" from="creditos" to="." method="_on_creditos_pressed"]
+[connection signal="pressed" from="tutorial" to="." method="_on_tutorial_pressed"]

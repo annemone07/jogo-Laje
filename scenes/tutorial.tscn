@@ -1,5 +1,86 @@
 [gd_scene format=3 uid="uid://qpte1gusqfx3"]
 
+[ext_resource type="Script" uid="uid://dstsi8v44dh4h" path="res://scripts/tutorial.gd" id="1_4kmhl"]
+[ext_resource type="Texture2D" uid="uid://c4x7by6kdw71i" path="res://images/roxo.png" id="1_c13y7"]
+[ext_resource type="Texture2D" uid="uid://0bu8phcmjqp1" path="res://images/voltar.png" id="3_cq4me"]
+[ext_resource type="Texture2D" uid="uid://bhwoq4dfitebd" path="res://images/voltar2.png" id="4_6yjpi"]
+
 [node name="tutorial" type="Node2D" unique_id=1617309217]
+script = ExtResource("1_4kmhl")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=519878278]
+position = Vector2(16, 48)
+
+[node name="Roxo" type="Sprite2D" parent="." unique_id=2049337313]
+z_index = -9
+position = Vector2(0, -16)
+scale = Vector2(1.953125, 1.953125)
+texture = ExtResource("1_c13y7")
+
+[node name="voltar" type="TextureButton" parent="." unique_id=1204819852]
+offset_left = 248.0
+offset_top = 264.0
+offset_right = 565.9355
+offset_bottom = 352.0
+texture_normal = ExtResource("3_cq4me")
+texture_hover = ExtResource("4_6yjpi")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="." unique_id=77340667]
+offset_left = -496.0
+offset_top = -224.0
+offset_right = -141.0
+offset_bottom = -179.0
+theme_override_font_sizes/font_size = 64
+text = "Controles e Mecânicas:"
+
+[node name="Label2" type="Label" parent="." unique_id=229036870]
+offset_left = -488.0
+offset_top = -136.0
+offset_right = -135.0
+offset_bottom = -113.0
+theme_override_font_sizes/font_size = 32
+text = "O personagem possui 7 de vida e 5 de energia"
+
+[node name="Label3" type="Label" parent="." unique_id=2051701310]
+offset_left = -488.0
+offset_top = -40.0
+offset_right = -172.0
+offset_bottom = 5.0
+theme_override_font_sizes/font_size = 32
+text = "Atacar: botão X"
+
+[node name="Label7" type="Label" parent="." unique_id=1439142341]
+offset_left = -488.0
+offset_top = -88.0
+offset_right = 319.0
+offset_bottom = -43.0
+theme_override_font_sizes/font_size = 32
+text = "Ao bater em um inimigo, você regenera 1 de energia"
+
+[node name="Label4" type="Label" parent="." unique_id=297951179]
+offset_left = -488.0
+offset_top = 8.0
+offset_right = 313.0
+offset_bottom = 53.0
+theme_override_font_sizes/font_size = 32
+text = "Ataque de longa distância: Z (consome 1 de energia)"
+
+[node name="Label5" type="Label" parent="." unique_id=539754306]
+offset_left = -488.0
+offset_top = 56.0
+offset_right = 2.0
+offset_bottom = 101.0
+theme_override_font_sizes/font_size = 32
+text = "Pular: C"
+
+[node name="Label6" type="Label" parent="." unique_id=2099399081]
+offset_left = -488.0
+offset_top = 104.0
+offset_right = 77.0
+offset_bottom = 149.0
+theme_override_font_sizes/font_size = 32
+text = "Regenerar: A (consome 5 de energia)"
+
+[connection signal="pressed" from="voltar" to="." method="_on_voltar_pressed"]

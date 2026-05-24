@@ -43,6 +43,7 @@ func _physics_process(delta) -> void:
 
 	if player.hasAttacked and enemy_hitbox.overlaps_area(player.get_node("areaAtk")) and contador_i_frames==0:
 		player.mana_atual+=1
+		player.mana_atual = clamp(player.mana_atual,0,5)
 		hp-=1
 		contador_i_frames = 1
 		#knockback

@@ -29,8 +29,6 @@ func _physics_process(delta) -> void:
 			
 			shooting()
 		state.DEAD:
-			animation_player.play("morrer")
-			await animation_player.animation_finished 
 			queue_free()
 		state.STUN:
 			if enemy_sprite.flip_h:
@@ -42,6 +40,7 @@ func _physics_process(delta) -> void:
 
 	if player.hasAttacked and enemy_hitbox.overlaps_area(player.get_node("areaAtk")) and contador_i_frames==0:
 		player.mana_atual+=1
+		player.mana_atual = clamp(player.mana_atual,0,5)
 		hp-=1
 		contador_i_frames = 1
 		#knockback
@@ -53,7 +52,7 @@ func _physics_process(delta) -> void:
 			velocity.x = 300*2
 		$cooldown.stop()
 		$spread.stop()
-		await get_tree().create_timer(0.5).timeout
+		await get_tree().create_timer(0.2).timeout
 		$cooldown.start()
 	if !player.hasAttacked:
 		contador_i_frames=0

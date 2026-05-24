@@ -1,10 +1,12 @@
 [gd_scene format=3 uid="uid://cc26gg5huh236"]
 
 [ext_resource type="Script" uid="uid://c0ake26mww70e" path="res://scripts/player.gd" id="1_g2els"]
-[ext_resource type="Texture2D" uid="uid://cns412fqs7gsp" path="res://images/MACA.png" id="2_d2wvv"]
+[ext_resource type="Texture2D" uid="uid://dnenqwk78ukkp" path="res://images/AGAINAGAINAGAIN.png" id="2_d2wvv"]
 [ext_resource type="Script" uid="uid://dh17ifvwokvjp" path="res://scripts/player_hud.gd" id="3_qlg0r"]
-[ext_resource type="Texture2D" uid="uid://buduuxs2pejxp" path="res://images/Profiles.png" id="4_qlg0r"]
+[ext_resource type="Texture2D" uid="uid://n1h5kkjwrgxg" path="res://images/ui1.png" id="4_jej6c"]
+[ext_resource type="Texture2D" uid="uid://drk54nkfucet4" path="res://images/ui3.png" id="5_f1ej7"]
 [ext_resource type="Texture2D" uid="uid://d1w6an6np6pqe" path="res://images/coracao.png" id="5_tuyoq"]
+[ext_resource type="Texture2D" uid="uid://ccmqotjcl365x" path="res://images/ui2.png" id="6_oprun"]
 [ext_resource type="Texture2D" uid="uid://dhaiwhbcg3sxc" path="res://images/mana.png" id="6_tuyoq"]
 [ext_resource type="AudioStream" uid="uid://b6qayymfg7quk" path="res://sounds/retro_game_sound_effects_-_all_sounds/SoundFlapLight.wav" id="7_y4r1p"]
 [ext_resource type="AudioStream" uid="uid://bcd6ipb7peh0d" path="res://sounds/retro_game_sound_effects_-_all_sounds/SoundJump1.wav" id="8_ur7pv"]
@@ -26,6 +28,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 3)]
 }
 
 [sub_resource type="Animation" id="Animation_a8ls1"]
@@ -79,6 +93,23 @@ tracks/0/keys = {
 "values": [6]
 }
 
+[sub_resource type="Animation" id="Animation_fulsm"]
+resource_name = "dead"
+length = 0.4
+step = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(1, 3)]
+}
+
 [sub_resource type="Animation" id="Animation_3v2ag"]
 resource_name = "idle"
 length = 0.3
@@ -94,6 +125,23 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_qfm1y"]
+resource_name = "jump"
+length = 0.5
+step = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 3)]
 }
 
 [sub_resource type="Animation" id="Animation_jej6c"]
@@ -120,7 +168,9 @@ _data = {
 &"atirou": SubResource("Animation_a8ls1"),
 &"bateu": SubResource("Animation_oprun"),
 &"dano": SubResource("Animation_f1ej7"),
+&"dead": SubResource("Animation_fulsm"),
 &"idle": SubResource("Animation_3v2ag"),
+&"jump": SubResource("Animation_qfm1y"),
 &"run": SubResource("Animation_jej6c")
 }
 
@@ -133,20 +183,35 @@ size = Vector2(53, 125)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dqkch"]
 size = Vector2(87, 134)
 
-[sub_resource type="Animation" id="Animation_tuyoq"]
-resource_name = "low"
-step = 1.0
+[sub_resource type="Animation" id="Animation_4r5pv"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
+tracks/0/path = NodePath(".:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [ExtResource("4_jej6c")]
+}
+
+[sub_resource type="Animation" id="Animation_tuyoq"]
+resource_name = "low"
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_f1ej7")]
 }
 
 [sub_resource type="Animation" id="Animation_fjrip"]
@@ -155,14 +220,14 @@ step = 1.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
+tracks/0/path = NodePath(".:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1]
+"values": [ExtResource("6_oprun")]
 }
 
 [sub_resource type="Animation" id="Animation_smehm"]
@@ -172,18 +237,19 @@ step = 1.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
+tracks/0/path = NodePath(".:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [2]
+"values": [ExtResource("4_jej6c")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ur7pv"]
 _data = {
+&"RESET": SubResource("Animation_4r5pv"),
 &"low": SubResource("Animation_tuyoq"),
 &"medium": SubResource("Animation_fjrip"),
 &"normal": SubResource("Animation_smehm")
@@ -195,12 +261,13 @@ collision_mask = 4
 script = ExtResource("1_g2els")
 
 [node name="Personagem" type="Sprite2D" parent="." unique_id=21985062]
-position = Vector2(-3.3881318e-21, -1.6940659e-21)
+z_index = 10
+position = Vector2(-1.2037062e-35, -7.9999995)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_d2wvv")
 hframes = 3
 vframes = 4
-frame = 1
+frame = 9
 
 [node name="player_animations" type="AnimationPlayer" parent="Personagem" unique_id=1185573101]
 libraries/ = SubResource("AnimationLibrary_oprun")
@@ -240,13 +307,12 @@ shape = SubResource("RectangleShape2D_dqkch")
 debug_color = Color(0.9896454, 0, 0.29347393, 0.41960785)
 
 [node name="player_hud" type="CanvasLayer" parent="." unique_id=818347029]
-visible = false
 script = ExtResource("3_qlg0r")
 
 [node name="player_portrait" type="Sprite2D" parent="player_hud" unique_id=1650527689]
-position = Vector2(80, 80)
-texture = ExtResource("4_qlg0r")
-hframes = 3
+position = Vector2(75, 63.000004)
+scale = Vector2(0.19884484, 0.19884485)
+texture = ExtResource("4_jej6c")
 
 [node name="animation" type="AnimationPlayer" parent="player_hud/player_portrait" unique_id=1039420928]
 libraries/ = SubResource("AnimationLibrary_ur7pv")
@@ -286,5 +352,6 @@ pitch_scale = 0.5
 
 [connection signal="timeout" from="coyoteTimer" to="." method="_on_coyote_timer_timeout"]
 [connection signal="timeout" from="timerAttack" to="." method="_on_timer_attack_timeout"]
+[connection signal="timeout" from="timerRanged" to="." method="_on_timer_ranged_timeout"]
 [connection signal="timeout" from="timer_I_frames" to="." method="_on_timer_i_frames_timeout"]
 [connection signal="body_entered" from="hurtbox" to="." method="_on_hurtbox_body_entered"]

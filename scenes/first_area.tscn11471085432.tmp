@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bp1j5c7b35vhg" path="res://images/enterArrow.png" id="6_4q1ry"]
 [ext_resource type="PackedScene" uid="uid://cc26gg5huh236" path="res://scenes/player.tscn" id="6_j6tfh"]
 [ext_resource type="Texture2D" uid="uid://c8n5wy3wusat" path="res://images/black_screen.png" id="10_k1hnx"]
+[ext_resource type="PackedScene" uid="uid://bmm0ovx87n0if" path="res://scenes/entrada_auto.tscn" id="11_k8fe5"]
 [ext_resource type="Script" uid="uid://dmal5hi7hulil" path="res://scripts/organização_ui.gd" id="11_u5t67"]
 [ext_resource type="Texture2D" uid="uid://c315jv2g3esp7" path="res://images/placeholder_vida.png" id="12_rxr1k"]
 [ext_resource type="Texture2D" uid="uid://ju4tl5g7w1uy" path="res://images/placeholder_mana.png" id="13_mkumm"]
@@ -22,8 +23,6 @@
 [ext_resource type="Texture2D" uid="uid://cns412fqs7gsp" path="res://images/maca.png" id="20_yf3ji"]
 [ext_resource type="Texture2D" uid="uid://dwjryqu3ivncc" path="res://images/tilesetCavernaTest.png" id="21_06m4d"]
 [ext_resource type="Script" uid="uid://dg8w2pwfxeh3r" path="res://scripts/tile_map_layer.gd" id="21_dl550"]
-[ext_resource type="PackedScene" uid="uid://bbpky25mh6x5c" path="res://scenes/enemy_fly.tscn" id="22_06m4d"]
-[ext_resource type="PackedScene" uid="uid://cqoafobxcinkb" path="res://scenes/enemy_sniper.tscn" id="23_2j24t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fh0ai"]
 size = Vector2(20, 8.0625)
@@ -341,6 +340,16 @@ scale = Vector2(1.24, 0.059)
 texture = ExtResource("13_mkumm")
 centered = false
 
+[node name="entranceAuto" parent="." unique_id=365865322 instance=ExtResource("11_k8fe5")]
+position = Vector2(2547, -13)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="entranceAuto" unique_id=1482991309]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_uvkhp")
+
+[node name="posSaida" type="Node2D" parent="entranceAuto" unique_id=585878987]
+position = Vector2(-1005.00006, 18)
+
 [node name="boss" parent="." unique_id=1621797502 groups=["enemies"] instance=ExtResource("19_0on2y")]
 position = Vector2(25979, 480)
 
@@ -383,6 +392,9 @@ script = ExtResource("21_dl550")
 [node name="Enemy_chaser" parent="." unique_id=1182357391 groups=["enemies"] instance=ExtResource("19_yf3ji")]
 position = Vector2(1307, 4656)
 
+[node name="Enemy_shooter" parent="." unique_id=1700318628 instance=ExtResource("20_dl550")]
+position = Vector2(475, 400)
+
 [node name="Enemy_chaser2" parent="." unique_id=628787010 instance=ExtResource("19_yf3ji")]
 position = Vector2(3995, 4480)
 
@@ -397,12 +409,6 @@ position = Vector2(6651, 4656)
 
 [node name="Enemy_shooter3" parent="." unique_id=1881543272 instance=ExtResource("20_dl550")]
 position = Vector2(8027, 5248)
-
-[node name="Enemy_fly" parent="." unique_id=1698209267 instance=ExtResource("22_06m4d")]
-position = Vector2(-517, 80)
-
-[node name="enemy_sniper" parent="." unique_id=2145027338 instance=ExtResource("23_2j24t")]
-position = Vector2(763, 288)
 
 [connection signal="morreu" from="player" to="." method="_on_player_morreu"]
 [connection signal="animation_finished" from="CanvasLayer/loading" to="player" method="_on_loading_animation_finished"]

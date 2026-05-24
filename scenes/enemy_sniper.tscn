@@ -59,6 +59,18 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_5uf6s"]
 resource_name = "stun"
 step = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.61),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1f7p7"]
 _data = {
@@ -69,15 +81,14 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4d8dn"]
-size = Vector2(1552, 410)
+size = Vector2(1280, 704)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5uf6s"]
 size = Vector2(96, 112)
 
-[node name="enemy_sniper" type="CharacterBody2D" unique_id=2145027338 node_paths=PackedStringArray("animation_player")]
+[node name="enemy_sniper" type="CharacterBody2D" unique_id=2145027338]
 collision_mask = 4
 script = ExtResource("1_rwlyv")
-animation_player = NodePath("Sprite2D/AnimationPlayer")
 
 [node name="Enemy_collision" type="CollisionShape2D" parent="." unique_id=1185320947]
 position = Vector2(-5, -8)
@@ -98,7 +109,7 @@ autoplay = &"idle"
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy_range" unique_id=2108904030]
-position = Vector2(3, 67)
+position = Vector2(-5, 192)
 shape = SubResource("RectangleShape2D_4d8dn")
 debug_color = Color(1, 0, 0.10470045, 0.41960785)
 
@@ -110,11 +121,11 @@ position = Vector2(-5, -8)
 shape = SubResource("RectangleShape2D_5uf6s")
 
 [node name="cooldown" type="Timer" parent="." unique_id=994806386]
-wait_time = 0.75
+wait_time = 1.2
 one_shot = true
 
 [node name="spread" type="Timer" parent="." unique_id=591812853]
-wait_time = 2.0
+wait_time = 5.0
 one_shot = true
 
 [node name="knockback" type="Timer" parent="." unique_id=188786776]

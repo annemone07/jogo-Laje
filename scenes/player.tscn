@@ -41,6 +41,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [Vector2i(0, 3)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../areaAtk/atkDireita:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_a8ls1"]
 resource_name = "atirou"
@@ -58,6 +70,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [8, 7]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../areaAtk/atkDireita:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_oprun"]
 resource_name = "bateu"
@@ -70,10 +94,22 @@ tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.10618685),
+"times": PackedFloat32Array(0, 0.30470145),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [5, 4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../areaAtk/atkDireita:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5497326),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_f1ej7"]
@@ -125,6 +161,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../areaAtk/atkDireita:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_qfm1y"]
@@ -286,9 +334,10 @@ collision_layer = 2
 [node name="atkDireita" type="CollisionShape2D" parent="areaAtk" unique_id=643237879]
 position = Vector2(70, -5.722046e-06)
 shape = SubResource("RectangleShape2D_qhqgy")
+disabled = true
 
 [node name="timerAttack" type="Timer" parent="." unique_id=1350838517]
-wait_time = 0.2
+wait_time = 0.6
 one_shot = true
 
 [node name="timerRanged" type="Timer" parent="." unique_id=487313558]

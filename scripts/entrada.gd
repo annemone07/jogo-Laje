@@ -17,13 +17,13 @@ func _process(delta: float) -> void:
 #	if entrada.overlaps_body(CharacterBody2D)
 
 #detecta que o jogador tá numa área de porta
-func _on_body_entered(body: CharacterBody2D) -> void:
-	if body is Jogador:
-		body.canEnter = true
-		body.posTp = pos_saida.global_position
-		enter_arrow.visible = true
+#func _on_body_entered(body: CharacterBody2D) -> void:
+#	if body is Jogador:
+#		body.canEnter = true
+#		body.posTp = pos_saida.global_position
+#		enter_arrow.visible = true
 
 #detecta que o jogador saiu de uma área de porta
-func _on_body_exited(body: CharacterBody2D) -> void:
-	player.canEnter = false
-	enter_arrow.visible = false
+#func _on_body_exited(body: CharacterBody2D) -> void:
+#	player.canEnter = false
+#	enter_arrow.visible = false

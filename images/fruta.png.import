@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8n5wy3wusat"
-path="res://.godot/imported/black_screen.png-05606e52a5397b518bc83bee2c4703d1.ctex"
+uid="uid://c3de4xq6wyqsc"
+path="res://.godot/imported/fruta.png-e0f58fa5c293ec60d3927739a6549344.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/black_screen.png"
-dest_files=["res://.godot/imported/black_screen.png-05606e52a5397b518bc83bee2c4703d1.ctex"]
+source_file="res://images/fruta.png"
+dest_files=["res://.godot/imported/fruta.png-e0f58fa5c293ec60d3927739a6549344.ctex"]
 
 [params]
 

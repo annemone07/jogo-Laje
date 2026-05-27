@@ -1,38 +1,154 @@
 [gd_scene format=3 uid="uid://c873fxl18txli"]
 
 [ext_resource type="Script" uid="uid://bdmqssbc1aqd3" path="res://scripts/enemy_chaser.gd" id="1_x7y0m"]
-[ext_resource type="Texture2D" uid="uid://bv3m88gs3dc2t" path="res://icon.svg" id="2_wuvmb"]
+[ext_resource type="Texture2D" uid="uid://eufss0qxpl4" path="res://images/COGUMELO.png" id="2_x7y0m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ddd7"]
-size = Vector2(80, 80)
+size = Vector2(82, 136)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xdwg6"]
-size = Vector2(384, 80)
+size = Vector2(896, 256)
+
+[sub_resource type="Animation" id="Animation_x7y0m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Enemy_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Enemy_sprite:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4ifjj"]
+resource_name = "atk"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Enemy_sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_wuvmb"]
+resource_name = "idle"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Enemy_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_3ddd7"]
+resource_name = "morrer"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Enemy_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3926262),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 5]
+}
+
+[sub_resource type="Animation" id="Animation_xdwg6"]
+resource_name = "run"
+length = 1.1
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Enemy_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4ifjj"]
+_data = {
+&"RESET": SubResource("Animation_x7y0m"),
+&"atk": SubResource("Animation_4ifjj"),
+&"idle": SubResource("Animation_wuvmb"),
+&"morrer": SubResource("Animation_3ddd7"),
+&"run": SubResource("Animation_xdwg6")
+}
 
 [node name="Enemy_chaser" type="CharacterBody2D" unique_id=1182357391]
+collision_mask = 4
 script = ExtResource("1_x7y0m")
 
 [node name="Enemy_collision" type="CollisionShape2D" parent="." unique_id=2007287862]
+position = Vector2(5, -12)
 shape = SubResource("RectangleShape2D_3ddd7")
+debug_color = Color(0, 0.6, 0.7, 0.41999996)
 
-[node name="Enemy_sprite" type="Sprite2D" parent="Enemy_collision" unique_id=1172582417]
-position = Vector2(-7.6293945e-06, 2.861023e-06)
-scale = Vector2(0.625, 0.625)
-texture = ExtResource("2_wuvmb")
+[node name="Enemy_sprite" type="Sprite2D" parent="." unique_id=1172582417]
+position = Vector2(14, -16)
+scale = Vector2(0.0954915, 0.09037777)
+texture = ExtResource("2_x7y0m")
+hframes = 3
+vframes = 2
+frame = 4
 
 [node name="Enemy_range" type="Area2D" parent="." unique_id=1053003867]
+collision_mask = 2
 
 [node name="range" type="CollisionShape2D" parent="Enemy_range" unique_id=19114438]
+position = Vector2(0, -64)
 shape = SubResource("RectangleShape2D_xdwg6")
 debug_color = Color(0.5000876, 0.5746376, 0.27697182, 0.41960785)
 
 [node name="Enemy_hitbox" type="Area2D" parent="." unique_id=67427644]
-collision_layer = 3
-collision_mask = 3
+position = Vector2(-15, 0)
+collision_mask = 2
 
 [node name="hitbox_collision" type="CollisionShape2D" parent="Enemy_hitbox" unique_id=164336486]
+position = Vector2(20, -12)
 shape = SubResource("RectangleShape2D_3ddd7")
+
+[node name="anim" type="AnimationPlayer" parent="." unique_id=1298009102]
+libraries/ = SubResource("AnimationLibrary_4ifjj")
+autoplay = &"idle"
 
 [connection signal="area_entered" from="Enemy_range" to="." method="_on_enemy_range_area_entered"]
 [connection signal="body_entered" from="Enemy_range" to="." method="_on_enemy_range_body_entered"]
 [connection signal="body_exited" from="Enemy_range" to="." method="_on_enemy_range_body_exited"]
+[connection signal="body_entered" from="Enemy_hitbox" to="." method="_on_enemy_hitbox_body_entered"]

@@ -1,17 +1,18 @@
-[gd_scene format=3 uid="uid://cb0t1mfia82rs"]
+[gd_scene format=4 uid="uid://cb0t1mfia82rs"]
 
 [ext_resource type="Script" uid="uid://dqqtkrgsywbub" path="res://scripts/cutscene_inicial.gd" id="1_332qb"]
-[ext_resource type="Texture2D" uid="uid://chup5n62y3gf8" path="res://images/arvore.png" id="1_bib33"]
-[ext_resource type="Texture2D" uid="uid://bhknd4ijmfr58" path="res://images/maca.png" id="2_332qb"]
-[ext_resource type="Texture2D" uid="uid://c8n5wy3wusat" path="res://scenes/black_screen.png" id="4_7krtc"]
-[ext_resource type="Texture2D" uid="uid://eqocj22nbbw2" path="res://images/caverna.png" id="4_tobb0"]
+[ext_resource type="Texture2D" uid="uid://c3de4xq6wyqsc" path="res://images/fruta.png" id="3_7krtc"]
+[ext_resource type="Texture2D" uid="uid://c8n5wy3wusat" path="res://images/black_screen.png" id="4_7krtc"]
 [ext_resource type="PackedScene" uid="uid://codiq4jo2ftrt" path="res://scenes/floor.tscn" id="5_1epil"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tobb0"]
-size = Vector2(20, 99.41774)
+[ext_resource type="Texture2D" uid="uid://cdsdni013v2ll" path="res://images/cenaInicial.png" id="5_br847"]
+[ext_resource type="Texture2D" uid="uid://3rxn05g8ta2j" path="res://images/azul.png" id="6_mxxs3"]
+[ext_resource type="Texture2D" uid="uid://ljfcww3gnt2f" path="res://images/fundo_3.png" id="7_8cgxa"]
+[ext_resource type="Texture2D" uid="uid://buxt5u7rcgff2" path="res://images/fundo_4.png" id="8_mxxs3"]
+[ext_resource type="Texture2D" uid="uid://dwjryqu3ivncc" path="res://images/tilesetCavernaTest.png" id="9_8cgxa"]
+[ext_resource type="Texture2D" uid="uid://dbwhk8fg0deqw" path="res://images/pedraFilosofal.png" id="10_4ffk4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1epil"]
-radius = 10.049875
+radius = 11.0
 
 [sub_resource type="Animation" id="Animation_iwbks"]
 length = 0.001
@@ -70,43 +71,56 @@ _data = {
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_br847"]
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4ffk4"]
+texture = ExtResource("9_8cgxa")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:3/0 = 0
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_5uhxa"]
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 7
+sources/0 = SubResource("TileSetAtlasSource_4ffk4")
+
 [node name="cutscene_inicial" type="Node2D" unique_id=133688127]
 script = ExtResource("1_332qb")
 
-[node name="Arvore" type="Sprite2D" parent="." unique_id=8462903]
-position = Vector2(11, -4)
-texture = ExtResource("1_bib33")
-
-[node name="floor" type="StaticBody2D" parent="Arvore" unique_id=2020314792]
-position = Vector2(63, 174)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Arvore/floor" unique_id=1096804470]
-position = Vector2(-90, -4)
-polygon = PackedVector2Array(-2, -3, 68, -12, 138, -9, 225, 20, -32, 105)
-
-[node name="floor1" type="StaticBody2D" parent="Arvore" unique_id=818576812]
-position = Vector2(-185, 245)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Arvore/floor1" unique_id=1988486204]
-position = Vector2(70.97066, -13.99408)
-rotation = 0.23212878
-shape = SubResource("RectangleShape2D_tobb0")
-
 [node name="corpoMaca" type="RigidBody2D" parent="." unique_id=1891092675]
 position = Vector2(-3, -87)
+collision_mask = 4
 
 [node name="Maca" type="Sprite2D" parent="corpoMaca" unique_id=257990545]
-position = Vector2(-1, 1)
-scale = Vector2(0.57894737, 0.57894737)
-texture = ExtResource("2_332qb")
+position = Vector2(-3, 11)
+scale = Vector2(0.057051808, 0.057051808)
+texture = ExtResource("3_7krtc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="corpoMaca" unique_id=1987272177]
-position = Vector2(-1, 9)
+position = Vector2(-1, 10)
 shape = SubResource("CircleShape2D_1epil")
+
+[node name="Sprite2D" type="Sprite2D" parent="corpoMaca" unique_id=1081044494]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2037322622]
 
 [node name="Camera2D" type="Camera2D" parent="CanvasLayer" unique_id=1413982003]
+position = Vector2(-4, -77)
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 
@@ -120,31 +134,80 @@ unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_br847")
 
 [node name="timerCair" type="Timer" parent="." unique_id=1455505566]
-wait_time = 3.5
+wait_time = 5.0
 one_shot = true
 autostart = true
 
 [node name="timerAcabar" type="Timer" parent="." unique_id=1322790143]
-wait_time = 1.9499999999999997
+wait_time = 1.9499999999999995
 one_shot = true
 
-[node name="Caverna" type="Sprite2D" parent="." unique_id=1484256532]
-z_index = -5
-position = Vector2(-14, 500)
-texture = ExtResource("4_tobb0")
-
 [node name="floor" parent="." unique_id=2068233716 instance=ExtResource("5_1epil")]
-position = Vector2(-266, 654)
+position = Vector2(-314, 1218)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="floor" unique_id=704654345]
 shape = SubResource("WorldBoundaryShape2D_7krtc")
 
 [node name="floor2" parent="." unique_id=165817415 instance=ExtResource("5_1epil")]
-position = Vector2(-289, 602)
+position = Vector2(-379, 1155)
 rotation = 1.5707964
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="floor2" unique_id=1452353253]
 shape = SubResource("WorldBoundaryShape2D_br847")
+
+[node name="CenaInicial" type="Sprite2D" parent="." unique_id=395948709]
+z_index = -5
+position = Vector2(-91, -3)
+scale = Vector2(0.34444442, 0.34444445)
+texture = ExtResource("5_br847")
+
+[node name="Azul" type="Sprite2D" parent="." unique_id=1923975357]
+z_index = -13
+position = Vector2(142, -159)
+texture = ExtResource("6_mxxs3")
+
+[node name="Fundo3" type="Sprite2D" parent="." unique_id=942124722]
+z_index = -17
+position = Vector2(-1769, -1117)
+texture = ExtResource("7_8cgxa")
+
+[node name="Fundo4" type="Sprite2D" parent="." unique_id=241134329]
+z_index = -17
+position = Vector2(-1769, 2420)
+texture = ExtResource("7_8cgxa")
+
+[node name="Fundo5" type="Sprite2D" parent="." unique_id=1537171056]
+z_index = -20
+position = Vector2(1731, -1106)
+texture = ExtResource("8_mxxs3")
+
+[node name="Fundo6" type="Sprite2D" parent="." unique_id=618058385]
+z_index = -20
+position = Vector2(1772, 2427)
+texture = ExtResource("8_mxxs3")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=343190102]
+position = Vector2(1535, -4861.0005)
+scale = Vector2(5, 5)
+tile_map_data = PackedByteArray("AADn/0sAAAACAAIAAADn/0oAAAACAAIAAADn/0kAAAACAAIAAADn/0gAAAACAAIAAADn/0cAAAACAAIAAADn/0YAAAACAAIAAADn/0UAAAACAAIAAADn/0QAAAACAAIAAADn/0MAAAACAAIAAADn/0IAAAACAAIAAADn/0EAAAACAAIAAADn/0AAAAACAAIAAADn/0wAAAAAAAEAAGDo/0wAAAABAAEAADDp/0wAAAABAAEAADDq/0wAAAABAAEAADDr/0wAAAABAAEAADDs/0wAAAABAAEAADDt/0wAAAABAAEAADDu/0wAAAABAAEAADDv/0wAAAABAAEAADDw/0wAAAABAAEAADDx/0wAAAABAAEAADDy/0wAAAABAAEAADDz/0wAAAABAAEAADD0/0wAAAABAAEAADD1/0wAAAABAAEAADD2/0wAAAABAAEAADD3/0wAAAABAAEAADD4/0wAAAABAAEAADD5/0wAAAABAAEAADD6/0wAAAABAAEAADD7/0wAAAABAAEAADDm/0AAAAABAAIAAADl/0AAAAABAAIAAADk/0AAAAABAAIAAADj/0AAAAABAAIAAADj/0EAAAABAAIAAADk/0EAAAABAAIAAADl/0EAAAABAAIAAADm/0EAAAABAAIAAADm/0IAAAABAAIAAADl/0IAAAABAAIAAADk/0IAAAABAAIAAADj/0IAAAABAAIAAADj/0MAAAABAAIAAADk/0MAAAABAAIAAADl/0MAAAABAAIAAADm/0MAAAABAAIAAADm/0QAAAABAAIAAADl/0QAAAABAAIAAADk/0QAAAABAAIAAADj/0QAAAABAAIAAADj/0UAAAABAAIAAADk/0UAAAABAAIAAADl/0UAAAABAAIAAADm/0UAAAABAAIAAADm/0YAAAABAAIAAADl/0YAAAABAAIAAADk/0YAAAABAAIAAADj/0YAAAABAAIAAADj/0gAAAABAAIAAADk/0gAAAABAAIAAADl/0gAAAABAAIAAADm/0gAAAABAAIAAADm/0cAAAABAAIAAADl/0cAAAABAAIAAADk/0cAAAABAAIAAADj/0cAAAABAAIAAADj/0kAAAABAAIAAADk/0kAAAABAAIAAADl/0kAAAABAAIAAADm/0kAAAABAAIAAADm/0oAAAABAAIAAADl/0oAAAABAAIAAADk/0oAAAABAAIAAADk/0sAAAABAAIAAADk/0wAAAABAAIAAADl/0wAAAABAAIAAADl/0sAAAABAAIAAADm/0sAAAABAAIAAADj/0oAAAABAAIAAADj/0wAAAABAAIAAADj/0sAAAABAAIAAADj/00AAAABAAIAAADk/00AAAABAAIAAADj/04AAAABAAIAAADj/08AAAABAAIAAADk/08AAAABAAIAAADk/04AAAABAAIAAADl/00AAAABAAIAAADm/0wAAAABAAIAAADm/00AAAABAAIAAADm/04AAAABAAIAAADm/08AAAABAAIAAADl/04AAAABAAIAAADn/04AAAABAAIAAADn/08AAAABAAIAAADl/08AAAABAAIAAADo/08AAAABAAIAAADo/04AAAABAAIAAADp/04AAAABAAIAAADo/00AAAABAAIAAADn/00AAAABAAIAAADp/08AAAABAAIAAADq/08AAAABAAIAAADq/04AAAABAAIAAADr/04AAAABAAIAAADr/00AAAABAAIAAADq/00AAAABAAIAAADp/00AAAABAAIAAADs/04AAAABAAIAAADt/04AAAABAAIAAADt/00AAAABAAIAAADs/00AAAABAAIAAADr/08AAAABAAIAAADs/08AAAABAAIAAADt/08AAAABAAIAAADu/08AAAABAAIAAADv/08AAAABAAIAAADv/04AAAABAAIAAADv/00AAAABAAIAAADu/00AAAABAAIAAADu/04AAAABAAIAAADw/04AAAABAAIAAADx/04AAAABAAIAAADy/04AAAABAAIAAADx/00AAAABAAIAAADw/00AAAABAAIAAADw/08AAAABAAIAAADx/08AAAABAAIAAADz/04AAAABAAIAAAD0/04AAAABAAIAAAD0/00AAAABAAIAAADz/00AAAABAAIAAADy/00AAAABAAIAAADy/08AAAABAAIAAADz/08AAAABAAIAAAD0/08AAAABAAIAAAD1/08AAAABAAIAAAD1/04AAAABAAIAAAD2/04AAAABAAIAAAD2/00AAAABAAIAAAD1/00AAAABAAIAAAD2/08AAAABAAIAAAD3/08AAAABAAIAAAD4/08AAAABAAIAAAD4/04AAAABAAIAAAD5/04AAAABAAIAAAD4/00AAAABAAIAAAD3/00AAAABAAIAAAD3/04AAAABAAIAAAD5/08AAAABAAIAAAD6/04AAAABAAIAAAD7/04AAAABAAIAAAD7/00AAAABAAIAAAD6/00AAAABAAIAAAD5/00AAAABAAIAAAD6/08AAAABAAIAAAD7/08AAAABAAIAAAA=")
+tile_set = SubResource("TileSet_5uhxa")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=61942715]
+position = Vector2(-35, 89)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1654223360]
+polygon = PackedVector2Array(0, -1, 42, -24, 139, -21, 100, 92, -42, 91)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=871420784]
+position = Vector2(-130, 4)
+polygon = PackedVector2Array(0, -1, -49, 87, -108, 87, -58, -12, 2, -19)
+
+[node name="PedraFilosofal" type="Sprite2D" parent="StaticBody2D" unique_id=780870106]
+position = Vector2(-345.75, 1122.6576)
+scale = Vector2(0.0050470936, 0.005047095)
+texture = ExtResource("10_4ffk4")
 
 [connection signal="animation_finished" from="CanvasLayer/loading" to="." method="_on_loading_animation_finished"]
 [connection signal="timeout" from="timerCair" to="." method="_on_timer_cair_timeout"]

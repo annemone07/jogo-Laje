@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://cbfb3rpnhgorq"]
+
+[ext_resource type="Texture2D" uid="uid://bsyuisyaxrkp1" path="res://images/Untitled.png" id="1_g3eks"]
+[ext_resource type="Script" uid="uid://wye33yi4ef3j" path="res://scripts/menu.gd" id="1_v86rl"]
+[ext_resource type="Texture2D" uid="uid://dfopjgrvf32tm" path="res://images/IniciarHover.png" id="2_v86rl"]
+[ext_resource type="Texture2D" uid="uid://dcxscjmm4umow" path="res://images/opcoes2.png" id="3_13sgg"]
+[ext_resource type="Texture2D" uid="uid://idrlr7gcprtf" path="res://images/opcoesHover.png" id="4_i6lef"]
+[ext_resource type="Texture2D" uid="uid://c0dkdga73bs3o" path="res://images/saida2.png" id="5_70i5f"]
+[ext_resource type="Texture2D" uid="uid://c01abfyyncaa7" path="res://images/sairHover.png" id="6_mj5lg"]
+[ext_resource type="Texture2D" uid="uid://oi2np21mv2yq" path="res://images/creditos3.png" id="8_i6lef"]
+[ext_resource type="Texture2D" uid="uid://dxqeswasvifng" path="res://images/creditos4.png" id="9_70i5f"]
+[ext_resource type="Texture2D" uid="uid://ljfcww3gnt2f" path="res://images/fundo_3.png" id="10_70i5f"]
+[ext_resource type="Texture2D" uid="uid://c4rdx52jhsl27" path="res://images/tutorial.png" id="10_ufwb2"]
+[ext_resource type="Texture2D" uid="uid://dgkbif0xm2ynw" path="res://images/tutorial2.png" id="11_6cdou"]
+
+[node name="Menu" type="Node2D" unique_id=457965247]
+script = ExtResource("1_v86rl")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2116659698]
+
+[node name="Camera2D" type="Camera2D" parent="CanvasLayer" unique_id=373931477]
+
+[node name="iniciar" type="TextureButton" parent="." unique_id=108041435]
+offset_left = -496.0
+offset_top = -240.0
+offset_right = -48.0
+offset_bottom = -128.0
+texture_normal = ExtResource("1_g3eks")
+texture_hover = ExtResource("2_v86rl")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="opcoes" type="TextureButton" parent="." unique_id=289739606]
+offset_left = -512.0
+offset_top = -64.0
+offset_right = -64.0
+offset_bottom = 48.0
+texture_normal = ExtResource("3_13sgg")
+texture_hover = ExtResource("4_i6lef")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="sair" type="TextureButton" parent="." unique_id=1182029045]
+offset_left = -512.0
+offset_top = 120.0
+offset_right = -64.0
+offset_bottom = 232.0
+texture_normal = ExtResource("5_70i5f")
+texture_hover = ExtResource("6_mj5lg")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="creditos" type="TextureButton" parent="." unique_id=1115027659]
+offset_left = 88.0
+offset_top = 128.0
+offset_right = 536.0
+offset_bottom = 240.0
+texture_normal = ExtResource("8_i6lef")
+texture_hover = ExtResource("9_70i5f")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="tutorial" type="TextureButton" parent="." unique_id=595342609]
+offset_left = 88.0
+offset_top = -64.0
+offset_right = 536.0
+offset_bottom = 48.0
+texture_normal = ExtResource("10_ufwb2")
+texture_hover = ExtResource("11_6cdou")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=155754104]
+
+[node name="Fundo3" type="Sprite2D" parent="." unique_id=1816562784]
+z_index = -6
+position = Vector2(-208.00006, 376.00006)
+scale = Vector2(0.46836156, 0.46836156)
+texture = ExtResource("10_70i5f")
+
+[connection signal="pressed" from="iniciar" to="." method="_on_iniciar_pressed"]
+[connection signal="pressed" from="opcoes" to="." method="_on_opcoes_pressed"]
+[connection signal="pressed" from="sair" to="." method="_on_sair_pressed"]
+[connection signal="pressed" from="creditos" to="." method="_on_creditos_pressed"]
+[connection signal="pressed" from="tutorial" to="." method="_on_tutorial_pressed"]

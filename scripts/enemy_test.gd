@@ -4,11 +4,15 @@ extends CharacterBody2D
 
 @onready var player: Jogador = %player
 @onready var hitbox: Area2D = $hitbox
+@onready var maca: Sprite2D = $Maca
+@onready var timer_knockback: Timer = $timerKnockback
 
 var hp = 10
 const SPEED = 100.0
 const JUMP_VELOCITY = -400.0
 var direction=1
+var takeKnockback=false
+var knockbackDirection=0
 var contador_i_frames=0
 
 func _physics_process(delta: float) -> void:
@@ -23,8 +27,10 @@ func _physics_process(delta: float) -> void:
 	if abs(player.global_position.x - global_position.x)<500:
 		if player.global_position.x - global_position.x<0:
 			direction = -1
+			maca.flip_h = true
 		elif player.global_position.x - global_position.x>0:
 			direction = 1
+			maca.flip_h = false
 	else:
 		direction = 0
 
@@ -38,9 +44,24 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	
-	if direction:
-		velocity.x = direction * SPEED
+	if direction and not takeKnockback:
+		if player.hasAttacked and hitbox.overlaps_area(player.get_node("areaAtk")) and contador_i_frames==0:
+			hp-=1
+			#knockback
+			timer_knockback.start()
+			var knockbackDirection = Vector2(-direction,0)
+			velocity = knockbackDirection.normalized() * 900 #lança o player na velocidade do knockback
+			velocity.y -= 300
+			contador_i_frames=1
+			print(hp)
+			takeKnockback=true
+		else:
+			velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+
+
+func _on_timer_knockback_timeout() -> void:
+	takeKnockback=false

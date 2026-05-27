@@ -41,7 +41,7 @@ offset_top = -136.0
 offset_right = -135.0
 offset_bottom = -113.0
 theme_override_font_sizes/font_size = 32
-text = "O personagem possui 7 de vida e 5 de energia"
+text = "O personagem possui 5 de vida e 5 de energia"
 
 [node name="Label3" type="Label" parent="." unique_id=2051701310]
 offset_left = -488.0

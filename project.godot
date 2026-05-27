@@ -13,7 +13,7 @@ config_version=5
 config/name="Jogo Laje"
 run/main_scene="uid://cbfb3rpnhgorq"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://n1h5kkjwrgxg"
 
 [autoload]
 
